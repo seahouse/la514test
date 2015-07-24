@@ -6,7 +6,7 @@
 <!--         <button type="button" class="btn btn-default">Middle</button> -->
     </div>
     
-    <table class="table">
+    <table class="table table-striped table-hover">
         <tr>
             <td>
                 <b>Item Number</b>
