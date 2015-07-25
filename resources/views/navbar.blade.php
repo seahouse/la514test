@@ -38,6 +38,7 @@
                             <li><a href="/auth/logout">退出登录</a></li>
                         @else
                             {!! Redirect::to('auth/login'); !!}
+<!--                             {!! redirect('/') !!} -->
                         @endif
                     </ul>
                 </div>

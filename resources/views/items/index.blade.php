@@ -7,24 +7,32 @@
     </div>
     
     <table class="table table-striped table-hover">
-        <tr>
-            <td>
-                <b>Item Number</b>
-            </td>
-            <td>
-                <b>Market Price</b>
-            </td>
-        </tr>
-        @foreach($items as $item)
+        <thead>
             <tr>
-                <td>
-                    <a href="{{ url('/items', $item->id) }}">{{ $item->item_number }}</a>
-                </td>
-                <td>
-                    {{ $item->marketprice }}
-                </td>
+                <th>Item Number</th>
+                <th>Market Price</th>
+                <th>Operate</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach($items as $item)
+                <tr>
+                    <td>
+                        <a href="{{ url('/items', $item->id) }}">{{ $item->item_number }}</a>
+                    </td>
+                    <td>
+                        {{ $item->marketprice }}
+                    </td>
+                    <td>
+                        <a href="{{ url('/items/'.$item->id.'/edit') }}" class="btn btn-success btn-mini pull-left">Edit</a>
+                        {{ Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) }}
+                            <button type="submit" href="{{ URL::route('items.destroy', $item->id) }} " class="btn btn-danger btn-mini">Delete</button>
+                        {{ Form::close() }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+
     </table>
     {!! $items->render() !!}
     
