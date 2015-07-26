@@ -78,9 +78,9 @@ return [
         'sqlsrv' => [
             'driver'   => 'sqlsrv',
             'host'     => '61.160.68.62',
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => 'hxcrm',
+            'username' => 'sa',
+            'password' => '85596908hx',
             'charset'  => 'utf8',
             'prefix'   => '',
             
