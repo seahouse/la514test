@@ -111,5 +111,7 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         //
+        Item::destroy($id);
+        return redirect('items');
     }
 }

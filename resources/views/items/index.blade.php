@@ -25,9 +25,9 @@
                     </td>
                     <td>
                         <a href="{{ url('/items/'.$item->id.'/edit') }}" class="btn btn-success btn-mini pull-left">Edit</a>
-                        {{ Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) }}
+                        {!! Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) !!}
                             <button type="submit" href="{{ URL::route('items.destroy', $item->id) }} " class="btn btn-danger btn-mini">Delete</button>
-                        {{ Form::close() }}
+                        {!! Form::close() !!}
                     </td>
                 </tr>
             @endforeach
