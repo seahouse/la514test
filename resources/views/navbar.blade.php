@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--     <title>Laravel 5.1 with Custom Authentication</title> -->
     <title>XX会计供需平台</title>
+    
+    <link data-turbolinks-track="true" href="css/choose-city.css" media="all" rel="stylesheet" />
 <!--     <link href="{{ asset("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css") }}" rel="stylesheet"> -->
     <link href="{{ asset("//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css") }}" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
@@ -18,7 +20,7 @@
                     <a class="navbar-brand" href="/">XX会计供需平台</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">地区<span class="caret"></span></a>
 <!--                             <ul class="dropdown-menu"> -->
@@ -57,8 +59,8 @@
                     </ul>
                 </div>
             </div>
-        </nav>        
-        
+        </nav>       
+        <input type="text" id="road_leave_city" /> 
         <div class="panel panel-default">
                 @yield('main')
             </div>
@@ -79,8 +81,13 @@
 <!--             </div> -->
 <!--         </div> -->
 <!--     </div> -->
+        
     
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script data-turbolinks-track="true" src="js/jquery.min.js?body=1"></script>
+    <script data-turbolinks-track="true" src="js/configCity.js?body=1"></script>
+    <script data-turbolinks-track="true" src="js/jquery.chooseCity.js?body=1"></script>
+    <script data-turbolinks-track="true" src="js/index.js?body=1"></script>
 </body>
 </html>
