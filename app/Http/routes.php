@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('accounting');
+//     return view('auth/login');
 //     return view('welcome');
 });
 Route::get('/home', function () {
@@ -25,6 +26,7 @@ Route::get('/navbar', function () {
 
 Route::resource('itemclasses', 'ItemclassesController');
 Route::resource('items', 'ItemsController');
+Route::resource('accountingorder1s', 'Accountingorder1sController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

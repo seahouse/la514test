@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel 5.1 with Custom Authentication</title>
+<!--     <title>Laravel 5.1 with Custom Authentication</title> -->
+    <title>XX会计供需平台</title>
 <!--     <link href="{{ asset("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css") }}" rel="stylesheet"> -->
     <link href="{{ asset("//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css") }}" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
@@ -14,27 +15,40 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    
+                    <a class="navbar-brand" href="/">XX会计供需平台</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/items">物料</a></li>
-                            </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">地区<span class="caret"></span></a>
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li><a href="/items">物料</a></li> -->
+<!--                             </ul> -->
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">销售<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">销售订单</a></li>
-                                <li><a href="#">客户</a></li>
-                            </ul>
-                        </li>
+<!--                         <li class="dropdown"> -->
+<!--                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品<span class="caret"></span></a> -->
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li><a href="/items">物料</a></li> -->
+<!--                             </ul> -->
+<!--                         </li> -->
+<!--                         <li class="dropdown"> -->
+<!--                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">销售<span class="caret"></span></a> -->
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li><a href="#">销售订单</a></li> -->
+<!--                                 <li><a href="#">客户</a></li> -->
+<!--                             </ul> -->
+<!--                         </li> -->
+                        <li><a href="/accountingorder1s">本地会计</a></li>
+                        <li><a href="#">会计问答</a></li>
+                        <li><a href="#">纳税申报</a></li>
+                        <li><a href="#">工商年检</a></li>
+                        <li><a href="#">企业注册</a></li>
+                        <li><a href="#">企业注销清算</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if((Auth::check()))
                             <li><a href="#">{!! Auth::user()->name !!}</a></li>
+                            <li><a href="accountingorder1s/create">发布信息</a></li>
                             <li><a href="/auth/logout">退出登录</a></li>
                         @else
                             {!! Redirect::to('auth/login'); !!}
@@ -46,7 +60,6 @@
         </nav>        
         
         <div class="panel panel-default">
-<!--             <div class="row"> -->
                 @yield('main')
             </div>
         </div>
