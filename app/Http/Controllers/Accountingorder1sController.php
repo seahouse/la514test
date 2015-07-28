@@ -59,6 +59,8 @@ class Accountingorder1sController extends Controller
     public function show($id)
     {
         //
+        $accountingorder1 = Accountingorder1::findOrFail($id);
+        return view('accountingorder1s.show', compact('accountingorder1'));
     }
 
     /**

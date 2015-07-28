@@ -1,20 +1,14 @@
 @extends('navbar')
 
 @section('main')
-    <h1>{{ $item->item_number }}</h1>
+    <h1>{{ $accountingorder1->title }}</h1>
     <p>
-        Name: {{ $item->item_name }}
+       地区: {{ $accountingorder1->status }}
     </p>
     <p>
-        Description: {{ $item->item_descrip }}
+        描述: {{ $accountingorder1->descrip }}
     </p>
     <p>
-        Item class: {{ $itemclass->name }}
-    </p>
-    <p>
-        Item Type: {{ $itemtype->name }}
-    </p>
-    <p>
-        Marke Price: {{ $item->marketprice }}
+        发布日期: {{ $accountingorder1->created_at }}
     </p>
 @stop
