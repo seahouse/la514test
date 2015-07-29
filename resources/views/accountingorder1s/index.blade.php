@@ -31,9 +31,10 @@
                         {{ $accountingorder1->created_at }}
                     </td>
                     <td>
-                        <a href="{{ url('/accountingorder1s/'.$accountingorder1->id.'/edit') }}" class="btn btn-success btn-mini pull-left">Edit</a>
-                        {!! Form::open(array('route' => array('accountingorder1s.destroy', $accountingorder1->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) !!}
-                            <button type="submit" href="{{ URL::route('accountingorder1s.destroy', $accountingorder1->id) }} " class="btn btn-danger btn-mini">Delete</button>
+                        <a href="{{ url('/accountingorder1s/'.$accountingorder1->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
+                        {!! Form::open(array('route' => array('accountingorder1s.destroy', $accountingorder1->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
+<!--                             <button type="submit" class="btn btn-danger btn-mini">Delete</button> -->
+                            {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
