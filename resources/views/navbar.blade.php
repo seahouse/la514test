@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--     <title>Laravel 5.1 with Custom Authentication</title> -->
-    <title>XX会计供需平台</title>
+    <title>和民福会计供需平台</title>
     
     <link data-turbolinks-track="true" href="css/choose-city.css" media="all" rel="stylesheet" />
 <!--     <link href="{{ asset("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css") }}" rel="stylesheet"> -->
@@ -17,7 +17,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">XX会计供需平台</a>
+                    <a class="navbar-brand" href="/">和民福会计供需平台</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">                        
@@ -40,12 +40,12 @@
 <!--                                 <li><a href="#">客户</a></li> -->
 <!--                             </ul> -->
 <!--                         </li> -->
-                        <li><a href="/accountingorder1s">本地会计</a></li>
-                        <li><a href="#">会计问答</a></li>
+                        <li><a href="/accountingorder1s">企业找会计</a></li>
+                        <li><a href="#">代理记账</a></li>
                         <li><a href="#">纳税申报</a></li>
-                        <li><a href="#">工商年检</a></li>
-                        <li><a href="#">企业注册</a></li>
-                        <li><a href="#">企业注销清算</a></li>
+                        <li><a href="#">其他服务</a></li>
+                        <li><a href="#">中小企业沙龙</a></li>
+                        <li><a href="#">会计从业人员社区</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if((Auth::check()))
