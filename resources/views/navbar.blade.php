@@ -17,12 +17,14 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">和民福会计供需平台</a>
+                    <a class="navbar-brand" href="/accounting2">和民福会计供需平台</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">                        
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">地区<span class="caret"></span></a>
+<!--                             <input type="text" id="road_leave_city" />  -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><input type="text" id="road_leave_city" /></a>
+<!--                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">地区<span class="caret"></span></a> -->
 <!--                             <ul class="dropdown-menu"> -->
 <!--                                 <li><a href="/items">物料</a></li> -->
 <!--                             </ul> -->
@@ -41,9 +43,16 @@
 <!--                             </ul> -->
 <!--                         </li> -->
                         <li><a href="/accountingorder1s">企业找会计</a></li>
-                        <li><a href="#">代理记账</a></li>
-                        <li><a href="#">纳税申报</a></li>
-                        <li><a href="#">其他服务</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">代理服务<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">代理记账</a></li>
+                                <li><a href="#">纳税申报</a></li>
+                                <li><a href="#">会计实务培训</a></li>
+                                <li><a href="#">财务与税收咨询</a></li>
+                                <li><a href="#">代办企业注册及注销</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">中小企业沙龙</a></li>
                         <li><a href="#">会计从业人员社区</a></li>
                     </ul>
@@ -60,7 +69,7 @@
                 </div>
             </div>
         </nav>       
-        <input type="text" id="road_leave_city" /> 
+<!--         <input type="text" id="road_leave_city" />  -->
         <div class="panel panel-default">
                 @yield('main')
             </div>
