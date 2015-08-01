@@ -1,9 +1,8 @@
-@extends('navbar')
+@extends('navbarerp')
 
 @section('main')
     <div class="panel-heading">
         <a href="/items/create">新建</a>
-<!--         <button type="button" class="btn btn-default">Middle</button> -->
     </div>
     
     <table class="table table-striped table-hover">

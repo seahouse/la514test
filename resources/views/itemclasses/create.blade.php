@@ -1,6 +1,6 @@
-@extends('main')
+@extends('navbarerp')
 
-@section('content')
+@section('main')
     <h1>Add a New Itemclass</h1>
     <hr/>
     

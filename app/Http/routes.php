@@ -28,6 +28,10 @@ Route::get('/accounting2', function() {
     return view('accounting2');
 });
 
+Route::get('/erp', function() {
+    return view('navbarerp');
+});
+
 Route::resource('itemclasses', 'ItemclassesController');
 Route::resource('items', 'ItemsController');
 Route::resource('accountingorder1s', 'Accountingorder1sController');

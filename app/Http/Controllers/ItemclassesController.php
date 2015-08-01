@@ -20,7 +20,8 @@ class ItemclassesController extends Controller
     public function index()
     {
         //
-        $itemclasses = Itemclass::all();
+//         $itemclasses = Itemclass::all();
+        $itemclasses = Itemclass::latest('created_at')->paginate(10);
         return view('itemclasses.index', compact('itemclasses'));
     }
 
