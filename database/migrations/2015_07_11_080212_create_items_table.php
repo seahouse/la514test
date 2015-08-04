@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->text('item_descrip');
             $table->integer('itemclass_id')->unsigned();
             $table->integer('itemtype_id')->unsigned();
-            $table->decimal('marketprice', 16, 4);
+            $table->decimal('marketprice', 16, 4)->default(0.0);
             
             $table->foreign('itemclass_id')->references('id')->on('itemclasses')->onDelete('cascade');
             $table->foreign('itemtype_id')->references('id')->on('itemtypes')->onDelete('cascade');

@@ -1,4 +1,4 @@
-@extends('navbar')
+@extends('navbarerp')
 
 @section('main')
     <h1>{{ $item->item_number }}</h1>

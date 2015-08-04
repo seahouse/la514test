@@ -24,7 +24,8 @@ class ItemsController extends Controller
     {
         //
 //         $items = Item::latest('created_at')->get();
-        $items = Item::latest('created_at')->paginate(5);
+        $items = Item::latest('created_at')->paginate(10);
+//         $itemclass = Item::find($id)->itemclass;
 //         $items = Item::paginate(5);
         return view('items.index', compact('items'));
     }

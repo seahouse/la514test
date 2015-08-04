@@ -1,11 +1,11 @@
 @extends('navbarerp')
 
 @section('main')
-    <h1>Add a New Itemclass</h1>
+    <h1>添加物料类别</h1>
     <hr/>
     
     {!! Form::open(['url' => '/itemclasses']) !!}
-        @include('itemclasses._form', ['submitButtonText' => 'Add Itemclass'])
+        @include('itemclasses._form', ['submitButtonText' => '添加'])
     {!! Form::close() !!}
     
     @include('errors.list')
