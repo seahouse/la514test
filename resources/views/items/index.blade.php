@@ -18,6 +18,7 @@
                 <th>物料编号</th>
                 <th>物料类别</th>
                 <th>名称</th>
+                <th>创建日期</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -29,9 +30,13 @@
                     </td>
                     <td>
 <!--                         {{ $item->market_price }} -->
+                        {{ $item->itemclass->name }}
                     </td>
                     <td>
                         {{ $item->item_name }}
+                    </td>
+                    <td>
+                        {{ $item->created_at }}
                     </td>
                     <td>
                         <a href="{{ URL::to('/items/'.$item->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>

@@ -1,11 +1,11 @@
-@extends('main')
+@extends('navbarerp')
 
-@section('content')
-    <h1>Edit a New Item</h1>
+@section('main')
+    <h1>编辑</h1>
     <hr/>
     
     {!! Form::model($item, ['method' => 'PATCH', 'action' => ['ItemsController@update', $item->id]]) !!}
-        @include('items._form', ['submitButtonText' => 'Update Item'])
+        @include('items._form', ['submitButtonText' => '保存'])
     {!! Form::close() !!}
     
     @include('errors.list')
