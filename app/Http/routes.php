@@ -35,6 +35,7 @@ Route::get('/erp', function() {
 Route::resource('itemclasses', 'ItemclassesController');
 Route::resource('items', 'ItemsController');
 Route::resource('accountingorder1s', 'Accountingorder1sController');
+Route::resource('boms', 'BomsController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

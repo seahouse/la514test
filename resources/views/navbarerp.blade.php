@@ -25,6 +25,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/items">物料</a></li>
                                 <li><a href="/itemclasses">物料类别</a></li>
+                                <li><a href="/boms">物料清单</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

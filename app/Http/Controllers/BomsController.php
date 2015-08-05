@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
-//use Illuminate\Http\Request;
-use Request;
-use App\Http\Requests\ItemRequest;
-use DB;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Itemclass;
-use App\Itemtype;
 
-class ItemsController extends Controller
+use App\Item;
+
+class BomsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +19,8 @@ class ItemsController extends Controller
     public function index()
     {
         //
-//         $items = Item::latest('created_at')->get();
         $items = Item::latest('created_at')->with('itemclass')->paginate(10);
-//         $itemclass = Item::find($id)->itemclass;
-//         $items = Item::paginate(5);
-        return view('items.index', compact('items'));
+        return view('boms.index', compact('items'));
     }
 
     /**
@@ -44,20 +37,17 @@ class ItemsController extends Controller
 //             'itemclasslist' => $itemclasslist,
 //             'itemtypeList' => $itemtypeList
 //         ));
-        return view('items.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param  Request  $request
      * @return Response
      */
-    public function store(ItemRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = Request::all();
-        Item::create($input);
-        return redirect('items');
     }
 
     /**
@@ -69,12 +59,6 @@ class ItemsController extends Controller
     public function show($id)
     {
         //
-//         $item = Item::findOrFail($id);
-//         $itemclass = Item::find($id)->itemclass;
-//         $itemtype = Item::find($id)->itemtype;
-//         return view('items.show', compact('item', 'itemclass', 'itemtype'));
-
-        return $this->edit($id);
     }
 
     /**
@@ -86,24 +70,18 @@ class ItemsController extends Controller
     public function edit($id)
     {
         //
-        $item = Item::findOrFail($id);
-        $itemclasslist = Itemclass::lists('name', 'id');
-        $itemtypeList = Itemtype::lists('name', 'id');
-        return view('items.edit', compact('item', 'itemclasslist', 'itemtypeList'));
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */
-    public function update($id, ItemRequest $request)
+    public function update(Request $request, $id)
     {
         //
-        $item = Item::findOrFail($id);
-        $item->update($request->all());
-        return redirect('items');
     }
 
     /**
@@ -115,7 +93,5 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         //
-        Item::destroy($id);
-        return redirect('items');
     }
 }
