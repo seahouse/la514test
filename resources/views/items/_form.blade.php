@@ -15,7 +15,7 @@
 
 <div class="form-group">
     {!! Form::label('itemclass_id', '物料类别:') !!}
-    {!! Form::select('itemclass_id', $itemclasslist, null, ['class' => 'form-control']) !!}
+    {!! Form::select('itemclass_id', $itemclassList, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

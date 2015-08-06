@@ -37,6 +37,7 @@ class BomsController extends Controller
 //             'itemclasslist' => $itemclasslist,
 //             'itemtypeList' => $itemtypeList
 //         ));
+        return view('boms.create');
     }
 
     /**
@@ -70,6 +71,7 @@ class BomsController extends Controller
     public function edit($id)
     {
         //
+        return view('boms.edit');
     }
 
     /**

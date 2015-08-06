@@ -24,7 +24,7 @@ class ItemsController extends Controller
     {
         //
 //         $items = Item::latest('created_at')->get();
-        $items = Item::latest('created_at')->with('itemclass')->paginate(10);
+        $items = Item::latest('created_at')->with('itemclass')->with('itemtype')->paginate(10);
 //         $itemclass = Item::find($id)->itemclass;
 //         $items = Item::paginate(5);
         return view('items.index', compact('items'));
@@ -87,9 +87,10 @@ class ItemsController extends Controller
     {
         //
         $item = Item::findOrFail($id);
-        $itemclasslist = Itemclass::lists('name', 'id');
-        $itemtypeList = Itemtype::lists('name', 'id');
-        return view('items.edit', compact('item', 'itemclasslist', 'itemtypeList'));
+//         $itemclasslist = Itemclass::lists('name', 'id');
+//         $itemtypeList = Itemtype::lists('name', 'id');
+//         return view('items.edit', compact('item', 'itemclasslist', 'itemtypeList'));
+        return view('items.edit', compact('item'));
     }
 
     /**

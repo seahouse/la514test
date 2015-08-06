@@ -1,11 +1,11 @@
 @extends('navbarerp')
 
 @section('main')
-    <h1>添加物料</h1>
+    <h1>添加物料清单</h1>
     <hr/>
     
-    {!! Form::open(['url' => '/items']) !!}
-        @include('items._form', ['submitButtonText' => '添加'])
+    {!! Form::open(['url' => '/boms']) !!}
+        @include('boms._form', ['submitButtonText' => '添加'])
     {!! Form::close() !!}
     
     @include('errors.list')

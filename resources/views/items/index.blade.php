@@ -12,13 +12,15 @@
     </div>
     
     @if ($items->count())
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
                 <th>物料编号</th>
                 <th>物料类别</th>
                 <th>名称</th>
+                <th>物料类型</th>
                 <th>创建日期</th>
+                <th>BOM</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -36,11 +38,21 @@
                         {{ $item->item_name }}
                     </td>
                     <td>
+                        {{ $item->itemtype->name }}
+                    </td>
+                    <td>
                         {{ $item->created_at }}
                     </td>
                     <td>
+                        @if ($item->itemtype->name == '生产')
+                            <a href="{{ URL::to('boms/' . $item->id . '/edit') }}" target="_blank">编辑</a>
+                        @else
+                            --
+                        @endif
+                    </td>
+                    <td>
                         <a href="{{ URL::to('/items/'.$item->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
-                        {!! Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) !!}
+                        {!! Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
                             {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </td>
