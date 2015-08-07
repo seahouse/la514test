@@ -20,6 +20,7 @@ class CreateBomheadsTable extends Migration
             $table->timestamps();
             
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->index('item_id');
         });
     }
 

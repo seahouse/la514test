@@ -26,6 +26,7 @@ class CreateBomitemsTable extends Migration
 
             $table->foreign('parent_item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->index(['parent_item_id', 'item_id']);
         });
     }
 

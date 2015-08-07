@@ -44,7 +44,7 @@
                         {{ $item->created_at }}
                     </td>
                     <td>
-                        @if ($item->itemtype->name == '生产')
+                        @if ($item->itemtype->name == '生产' || $item->itemtype->name == '采购')
                             <a href="{{ URL::to('boms/' . $item->id . '/edit') }}" target="_blank">编辑</a>
                         @else
                             --

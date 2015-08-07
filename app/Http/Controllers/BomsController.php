@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Item;
+use App\Bomhead;
+use App\Bomitem;
+use DB;
 
 class BomsController extends Controller
 {
@@ -71,7 +74,13 @@ class BomsController extends Controller
     public function edit($id)
     {
         //
-        return view('boms.edit');
+        $bomhead = Bomhead::findOrNew($id);
+        $parentItem = Item::findOrFail($id);
+//         return $bomhead;
+        $bomids = Bomitem::all('item_id');
+//         $bomitems = $parentItem->posts()->where('item_id', $id)->get();
+//         $bomitems = Bomitem::where('parent_item_id', '=' $id);
+        return view('boms.edit', compact('bomhead', 'parentItem'));
     }
 
     /**
