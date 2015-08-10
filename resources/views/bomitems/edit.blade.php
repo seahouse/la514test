@@ -14,7 +14,7 @@
         {!! Form::close() !!}
     @endif
     
-    <a href="{{ URL::to('/bomitems/' . $parentItem->id . '/createitem/') }}" class="btn btn-sm btn-success">新建</a>
+    <a href="{{ URL::to('/bomitem/' . $parentItem->id) }}" class="btn btn-sm btn-success">新建</a>
         <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
