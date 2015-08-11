@@ -28,7 +28,13 @@
             </tr>
         </thead>
         <tbody>
-
+            @foreach($bomitems as $bomitem)
+                <tr>
+                    <td>
+                        {{ $bomitem->item->item_number }}
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
 
     </table>

@@ -16,11 +16,11 @@ class CreateBomitemsTable extends Migration
             $table->increments('id');
 
             $table->integer('parent_item_id')->unsigned();
-            $table->integer('seqnumber');
+            $table->integer('seqnumber')->nullable()->default(0);
             $table->integer('item_id')->unsigned();
-            $table->decimal('qtyper', 8, 6);
-            $table->date('effective');
-            $table->date('expires');
+            $table->decimal('qtyper', 8, 6)->nullable()->default(0.0);
+            $table->date('effective')->nullable();
+            $table->date('expires')->nullable();
             
             $table->timestamps();
 

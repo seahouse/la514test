@@ -77,10 +77,10 @@ class BomsController extends Controller
         $bomhead = Bomhead::findOrNew($id);
         $parentItem = Item::findOrFail($id);
 //         return $bomhead;
-        $bomids = Bomitem::all('item_id');
+//         $bomids = Bomitem::all('item_id');
 //         $bomitems = $parentItem->posts()->where('item_id', $id)->get();
-//         $bomitems = Bomitem::where('parent_item_id', '=' $id);
-        return view('boms.edit', compact('bomhead', 'parentItem'));
+        $bomitems = Bomitem::where('parent_item_id', $id)->with('item')->get();
+        return view('boms.edit', compact('bomhead', 'parentItem', 'bomitems'));
     }
 
     /**

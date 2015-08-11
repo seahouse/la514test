@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
-use App\Http\Requests;
+//use App\Http\Requests;
+use Request;
 use App\Http\Controllers\Controller;
+use App\Bomitem;
+use App\Http\Requests\BomitemRequest;
 
 class BomitemsController extends Controller
 {
@@ -36,9 +39,13 @@ class BomitemsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(BomitemRequest $request)
     {
         //
+        $input = Request::all();
+        $parentid = $request->input('parent_item_id');
+        Bomitem::create($input);
+        return redirect('boms/'.$parentid.'/edit');
     }
 
     /**
