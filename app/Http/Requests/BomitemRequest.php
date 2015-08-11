@@ -28,5 +28,6 @@ class BomitemRequest extends Request
             'parent_item_id' => 'required',
             'item_id' => 'required',
         ];
-    }
+    }    
+    
 }

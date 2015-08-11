@@ -12,4 +12,14 @@ class Bomitem extends Model
         'item_id',
         'qtyper',
     ];
+    
+    public function parentitem()
+    {
+        return $this->hasOne('App\Item', 'id', 'parent_item_id');
+    }
+    
+    public function item()
+    {
+        return $this->hasOne('App\Item', 'id', 'item_id');
+    }
 }
