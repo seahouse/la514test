@@ -104,5 +104,6 @@ class BomsController extends Controller
     public function destroy($id)
     {
         //
+
     }
 }

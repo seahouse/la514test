@@ -1,11 +1,7 @@
-@if ($bomhead->count())
-    $bomhead->item->item_number
-    @else
-    @endif
-<div class="form-group">
-    {!! Form::label('item_number', '物料编号:') !!}
-    {!! Form::text('', null, ['class' => 'form-control']) !!}
-</div>
+<!-- <div class="form-group"> -->
+<!--     {!! Form::label('item_number', '物料编号:') !!} -->
+<!--     {!! Form::text('', null, ['class' => 'form-control']) !!} -->
+<!-- </div> -->
 
 <!-- <div class="form-group"> -->
 <!--     {!! Form::label('item_name', '物料名称:') !!} -->

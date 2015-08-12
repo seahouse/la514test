@@ -14,16 +14,15 @@
         {!! Form::close() !!}
     @endif
     
-    <a href="{{ URL::to('/bomitems/' . $parentItem->id . '/createitem/') }}" class="btn btn-sm btn-success">新建</a>
+    <div class="panel-heading">
+        <a href="{{ URL::to('/bomitems/' . $parentItem->id . '/createitem/') }}" class="btn btn-sm btn-success">新建</a>
+    </div>
+    
         <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
                 <th>物料编号</th>
-                <th>物料类别</th>
-                <th>名称</th>
-                <th>物料类型</th>
-                <th>创建日期</th>
-                <th>BOM</th>
+                <th>数量</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -32,6 +31,15 @@
                 <tr>
                     <td>
                         {{ $bomitem->item->item_number }}
+                    </td>
+                    <td>
+                        {{ $bomitem->qtyper }}
+                    </td>
+                    <td>
+                        <a href="{{ URL::to('/bomitems/'.$bomitem->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
+                        {!! Form::open(array('route' => array('bomitems.destroy', $bomitem->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
+                            {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
                     </td>
                 </tr>
             @endforeach

@@ -68,6 +68,8 @@ class BomitemsController extends Controller
     public function edit($id)
     {
         //
+        $bomitem = Bomitem::findOrFail($id);
+        return view('Bomitems.edit', compact('bomitem'));
     }
 
     /**
@@ -91,6 +93,9 @@ class BomitemsController extends Controller
     public function destroy($id)
     {
         //
+        $parentid = Bomitem::find($id)->parent_item_id;
+        Bomitem::destroy($id);
+        return redirect('boms/'.$parentid.'/edit');
     }
     
     public function createitem($parentid)
