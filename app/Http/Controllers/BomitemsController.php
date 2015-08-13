@@ -69,7 +69,7 @@ class BomitemsController extends Controller
     {
         //
         $bomitem = Bomitem::findOrFail($id);
-        return view('Bomitems.edit', compact('bomitem'));
+        return view('bomitems.edit', compact('bomitem'));
     }
 
     /**
@@ -79,9 +79,13 @@ class BomitemsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(BomitemRequest $request, $id)
     {
         //
+        $parentid = Bomitem::find($id)->parent_item_id;
+        $bomitem = Bomitem::findOrFail($id);
+        $bomitem->update($request->all());
+        return redirect('boms/'.$parentid.'/edit');
     }
 
     /**

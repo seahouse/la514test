@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('parent_item_id', '主物料:') !!}
-    {!! Form::select('parent_item_id', $itemList, $parentid, ['class' => 'form-control']) !!}
+    {!! Form::select('parent_item_id', $itemList, $parentSelected, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -10,7 +10,7 @@
 
 <div class="form-group">
     {!! Form::label('qtyper', '数量:') !!}
-    {!! Form::text('qtyper', '0.0', ['class' => 'form-control']) !!}
+    {!! Form::text('qtyper', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- <div class="form-group"> -->

@@ -5,7 +5,7 @@
     <hr/>
     
     {!! Form::model($bomitem, ['method' => 'PATCH', 'action' => ['BomitemsController@update', $bomitem->id]]) !!}
-        @include('bomitems._form', ['submitButtonText' => '保存'])
+        @include('bomitems._form', ['parentSelected' => $bomitem->parent_item_id, 'submitButtonText' => '保存'])
     {!! Form::close() !!}
     
     @include('errors.list')
