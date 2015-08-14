@@ -39,6 +39,11 @@ Route::resource('boms', 'BomsController');
 Route::get('bomitems/{id}/createitem', 'BomitemsController@createitem');
 Route::resource('bomitems', 'BomitemsController');
 
+Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth'], function() {
+    Route::resource('addrs', 'AddrsController');
+    Route::resource('provinces', 'ProvincesController');
+});
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

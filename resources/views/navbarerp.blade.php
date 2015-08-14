@@ -35,6 +35,12 @@
                                 <li><a href="#">客户</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">客户关系<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/addr/addrs">地址</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if((Auth::check()))
