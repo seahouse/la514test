@@ -21,6 +21,8 @@ class CreateProvincesTable extends Migration
             $table->timestamps();
             
             $table->foreign('country_id')->references('id')->on('countrys')->onDelete('cascade');
+            
+//             $table->unique('name');      // not unique because maybe add country in the future.
         });
     }
 

@@ -27,6 +27,11 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer(array('items.create', 'items.edit'), function($view) {
             $view->with('itemtypeList', \App\Itemtype::orderby('id', 'asc')->lists('name', 'id'));
         });
+        
+        // provinceList
+        view()->composer(array('addr.citys.create', 'addr.citys.edit'), function($view) {
+            $view->with('provinceList', \App\Province::orderby('id', 'asc')->lists('name', 'id'));
+        });
     }
 
     /**

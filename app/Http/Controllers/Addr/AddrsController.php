@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Addr;
+
 class AddrsController extends Controller
 {
     /**
@@ -17,7 +19,8 @@ class AddrsController extends Controller
     public function index()
     {
         //
-        return view('addr.addrs.index');
+        $addrs = Addr::latest('created_at')->paginate(10);
+        return view('addr.addrs.index', compact('addrs'));
     }
 
     /**

@@ -7,11 +7,11 @@ namespace App\Http\Controllers\Addr;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Province;
-use App\Http\Requests\Addr\ProvinceRequest;
+use App\City;
+use App\Http\Requests\Addr\CityRequest;
 use Request;
 
-class ProvincesController extends Controller
+class CitysController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class ProvincesController extends Controller
     public function index()
     {
         //
-        $provinces = Province::latest('created_at')->paginate(10);
-        return view('addr.provinces.index', compact('provinces'));
+        $citys = City::latest('created_at')->with('province')->paginate(10);
+        return view('addr.citys.index', compact('citys'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ProvincesController extends Controller
     public function create()
     {
         //
-        return view('addr.provinces.create');
+        return view('addr.citys.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class ProvincesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ProvinceRequest $request)
+    public function store(CityRequest $request)
     {
         //
         $input = Request::all();
-        Province::create($input);
-        return redirect('addr/provinces');
+        City::create($input);
+        return redirect('addr/citys');
     }
 
     /**
@@ -70,6 +70,8 @@ class ProvincesController extends Controller
     public function edit($id)
     {
         //
+        $city = City::findOrFail($id);
+        return view('addr.citys.edit', compact('city'));
     }
 
     /**
@@ -79,9 +81,12 @@ class ProvincesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CityRequest $request, $id)
     {
         //
+        $city = City::findOrFail($id);
+        $city->update($request->all());
+        return redirect('addr/citys');
     }
 
     /**
@@ -93,7 +98,7 @@ class ProvincesController extends Controller
     public function destroy($id)
     {
         //
-        Province::destroy($id);
-        return redirect('addr/provinces');
+        City::destroy($id);
+        return redirect('addr/citys');
     }
 }

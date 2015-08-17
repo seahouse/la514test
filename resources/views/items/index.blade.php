@@ -5,7 +5,7 @@
 <!--        <div class="pull-right" style="padding-top: 4px;"> -->
 <!--             <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'新建', [], 'layouts'}}</a> -->
 <!--         </div> -->
-        <a href="items/create" class="btn btn-sm btn-success">新建</a>
+        <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success">新建</a>
 <!--         <h2> -->
 <!--             {{ ('物料') }} -->
 <!--         </h2> -->

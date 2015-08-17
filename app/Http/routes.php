@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth'], function() {
     Route::resource('addrs', 'AddrsController');
     Route::resource('provinces', 'ProvincesController');
+    Route::resource('citys', 'CitysController');
 });
 
 // Authentication routes...
