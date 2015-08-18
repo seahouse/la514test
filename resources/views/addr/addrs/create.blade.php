@@ -79,16 +79,22 @@
     
     <form>
         <div class="form-group">
-            <label for="province" id="t1">Select Province:</label>
-                {!! Form::select('province', $provinceList, null, ['class' => 'form-control']) !!}
+            <label for="province">Select Province:</label>
+<!--             <select name="province" id="province" class="form-control"> -->
+<!--                 @foreach ($provinceList as $province) -->
+<!--                     <option value="{{ $province }}">{{ $province }}</option> -->
+<!--                 @endforeach -->
+<!--             </select> -->
+                {!! Form::select('province_id', $provinceList, null, ['class' => 'form-control', 'id' => 'province']) !!}
             </select>
         </div>
         
         <div class="form-group">
             <label for="city">Select City:</label>
-            <select name="city" id="city" class="form-control">
-                <option>--Select--</option> -->
-            </select>
+<!--             <select name="city" id="city" class="form-control"> -->
+<!--                 <option>--Select--</option> --> 
+<!--             </select> -->
+            {!! Form::select('city_id', array(), null, ['class' => 'form-control', 'id' => 'city']) !!}
         </div>
     </form>
     
@@ -131,19 +137,53 @@
 @stop
 
 @section('script')
-    <script type="text/javascript">
-        jQuery(document).ready(function($){
-            $('#province').change(function(){
-                $.get("{{ url('api/dropdown')}}",
-                { option: $(this).val() },
-                function(data) {
-                var city = $('#city');
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $('#province').change(function(){
+//             alert($(this).val());
+            $.get("{{ url('api/dropdown') }}", { option: $(this).val() }, function(data) {
+                var city=$('#city');
                 city.empty();
-                $.each(data, function(index,element) {
-                    city.append("<option value='"+ element.id +"'>" + element.city + "</option>");
-                });
+                $.each(data, function(index, element) {
+//                     alert(element.name);
+                    city.append("<option value='"+ element.id +"'>" + element.name + "</option>");
                 });
             });
+//             $.get("{{ url('api/dropdown') }}"));
+//             $.get("{{ url('api/dropdown') }}"), function(data)
+//                     {
+//                 $.each(data, function(index, element) {
+//                     alert(element.name);
+//                 });
+//             $.get("{{ url('api/dropdown') }}",
+//             { option: $(this).val() },
+//             function(data) {
+//             var city = $('#city');
+//             city.empty();
+//             $.each(data, function(index,element) {
+//                 city.append("<option value='"+ element.id +"'>" + element.name + "</option>");
+//             });
+//             });
+        });
+    }); 
+<!--
+
+//-->
+</script>
+    <script type="text/javascript">
+//         jQuery(document).ready(function($){
+//             alert('aaa');
+//             $('#province').change(function(){
+//                 $.get("{{ url('api/dropdown')}}",
+//                 { option: $(this).val() },
+//                 function(data) {
+//                 var city = $('#city');
+//                 city.empty();
+//                 $.each(data, function(index,element) {
+//                     city.append("<option value='"+ element.id +"'>" + element.city + "</option>");
+//                 });
+//                 });
+//             });
 //             $('#city').change(function(){
 //                 $.get("{{ url('api/dropdowndist')}}",
 //                 { stateoption: $(this).val() },
@@ -155,5 +195,5 @@
 //                 });
 //                 });
 //             });
-        });    
+//         });    
 @stop

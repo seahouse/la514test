@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Province;
 use App\Http\Requests\Addr\ProvinceRequest;
 use Request;
+use App\City;
 
 class ProvincesController extends Controller
 {
@@ -99,7 +100,8 @@ class ProvincesController extends Controller
     
     public function getIndex()
     {
-        $input = Input::get('option');
+//         return City::all();
+        $input = Request::get('option');
         $province = Province::find($input);
         $cities = $province->cities();
         return $cities->get(['id', 'name']);
