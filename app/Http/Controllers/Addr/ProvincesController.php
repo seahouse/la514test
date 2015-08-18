@@ -96,4 +96,12 @@ class ProvincesController extends Controller
         Province::destroy($id);
         return redirect('addr/provinces');
     }
+    
+    public function getIndex()
+    {
+        $input = Input::get('option');
+        $province = Province::find($input);
+        $cities = $province->cities();
+        return $cities->get(['id', 'name']);
+    }
 }

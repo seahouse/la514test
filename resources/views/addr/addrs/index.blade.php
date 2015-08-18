@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="panel-heading">
-        <a href="addr/addrs/create" class="btn btn-sm btn-success">新建</a>
+        <a href="addrs/create" class="btn btn-sm btn-success">新建</a>
        <div class="pull-right" style="padding-top: 4px;">
             <a href="{{ URL::to('addr/citys') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'城市管理', [], 'layouts'}}</a>
         </div>

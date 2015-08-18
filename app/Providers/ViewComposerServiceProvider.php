@@ -29,8 +29,13 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
         
         // provinceList
-        view()->composer(array('addr.citys.create', 'addr.citys.edit'), function($view) {
+        view()->composer(array('addr.citys.create', 'addr.citys.edit', 'addr.addrs.create', 'addr.addrs.edit'), function($view) {
             $view->with('provinceList', \App\Province::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // cityList
+        view()->composer(array('addr.addrs.create', 'addr.addrs.edit'), function($view) {
+            $view->with('cityList', \App\City::orderby('id', 'asc')->lists('name', 'id'));
         });
     }
 

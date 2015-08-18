@@ -1,31 +1,16 @@
 <div class="form-group">
-    {!! Form::label('item_number', '物料编号:') !!}
-    {!! Form::text('item_number', null, ['class' => 'form-control']) !!}
+    {!! Form::label('province_id', '省份:') !!}
+    {!! Form::select('province_id', $provinceList, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('item_name', '物料名称:') !!}
-    {!! Form::text('item_name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('city_id', '城市:') !!}
+    {!! Form::select('city_id', $cityList, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('item_descrip', '描述:') !!}
-    {!! Form::text('item_descrip', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('itemclass_id', '物料类别:') !!}
-    {!! Form::select('itemclass_id', $itemclassList, null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('itemtype_id', '物料类型:') !!}
-    {!! Form::select('itemtype_id', $itemtypeList, null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('marketprice', '价格:') !!}
-    {!! Form::text('marketprice', '0.0', ['class' => 'form-control']) !!}
+    {!! Form::label('line1', '详细地址:') !!}
+    {!! Form::text('line1', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

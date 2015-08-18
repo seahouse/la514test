@@ -31,6 +31,7 @@ class AddrsController extends Controller
     public function create()
     {
         //
+        return view('addr.addrs.create');
     }
 
     /**

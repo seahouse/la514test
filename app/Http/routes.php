@@ -46,6 +46,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('boms', 'BomsController');
     Route::get('bomitems/{id}/createitem', 'BomitemsController@createitem');
     Route::resource('bomitems', 'BomitemsController');
+    
+//     Route::get('api/dropdown', function() {
+//         $input = Input::get('option');
+//         $maker = Client::find($input);
+//         $models = $make->projects();
+//         return Response::eloquent($models->get(array('id', 'name')));
+//     });
+    Route::get('api/dropdown', 'ProvincesController@getIndex');
 });
 
 Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth'], function() {

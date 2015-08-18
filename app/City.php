@@ -15,6 +15,7 @@ class City extends Model
     ];
     
     public function province() {
-        return $this->hasOne('App\Province', 'id', 'province_id');
+//         return $this->hasOne('App\Province', 'id', 'province_id');
+        return $this->belongsTo('App\Province');
     }
 }
