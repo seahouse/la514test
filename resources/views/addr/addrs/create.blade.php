@@ -4,6 +4,10 @@
     <h1>添加地址</h1>
     <hr/>
     
+    {!! Form::open(['url' => 'addr/addrs']) !!}
+        @include('addr.addrs._form', ['submitButtonText' => '添加'])
+    {!! Form::close() !!}
+    
 <!--     <form> -->
 <!--         <div class="form-group"> -->
 <!--             <lablel for="province_id">Select Province:</lablel> -->
@@ -47,18 +51,7 @@
 </script>
      -->
     
-<!--     {!! Form::open(['url' => 'addr/addrs']) !!} -->
-<!--         <select id="make" name="make"> -->
-<!--             <option>Select Car Make</option> -->
-<!--             <option value="1">Toyota</option> -->
-<!--             <option value="2">Honda</option> -->
-<!--             <option value="3">Mercedes</option> -->
-<!--         </select> -->
 
-<!--         <select id="model" name="model"> -->
-<!--             <option>Please choose car make first</option> -->
-<!--         </select> -->
-<!--     {!! Form::close() !!} -->
     
 <!--     <script type="text/javascript"> 
     jQuery(document).ready(function($) {
@@ -77,27 +70,20 @@
     });
 </script>-->
     
+    {{-- 
     <form>
         <div class="form-group">
             <label for="province">Select Province:</label>
-<!--             <select name="province" id="province" class="form-control"> -->
-<!--                 @foreach ($provinceList as $province) -->
-<!--                     <option value="{{ $province }}">{{ $province }}</option> -->
-<!--                 @endforeach -->
-<!--             </select> -->
-                {!! Form::select('province_id', $provinceList, null, ['class' => 'form-control', 'id' => 'province']) !!}
+                {!! Form::select('province_id', array('0' => '--请选择--') + json_decode($provinceList, true), null, ['class' => 'form-control', 'id' => 'province']) !!} 
             </select>
         </div>
         
         <div class="form-group">
             <label for="city">Select City:</label>
-<!--             <select name="city" id="city" class="form-control"> -->
-<!--                 <option>--Select--</option> --> 
-<!--             </select> -->
             {!! Form::select('city_id', array(), null, ['class' => 'form-control', 'id' => 'city']) !!}
         </div>
     </form>
-    
+    --}}
 
             
        
@@ -137,6 +123,9 @@
 @stop
 
 @section('script')
+    @include('addr.addrs._form_js', [])
+
+{{--
 <script type="text/javascript">
     jQuery(document).ready(function($){
         $('#province').change(function(){
@@ -170,6 +159,8 @@
 
 //-->
 </script>
+--}}
+
     <script type="text/javascript">
 //         jQuery(document).ready(function($){
 //             alert('aaa');

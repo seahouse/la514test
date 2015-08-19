@@ -2,44 +2,57 @@
 
 @section('main')
     <div class="panel-heading">
-        <a href="addrs/create" class="btn btn-sm btn-success">新建</a>
-       <div class="pull-right" style="padding-top: 4px;">
-            <a href="{{ URL::to('addr/citys') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'城市管理', [], 'layouts'}}</a>
-        </div>
+<!--        <div class="pull-right" style="padding-top: 4px;"> -->
+<!--             <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'新建', [], 'layouts'}}</a> -->
+<!--         </div> -->
+        <a href="{{ URL::to('contacts/create') }}" class="btn btn-sm btn-success">新建</a>
 <!--         <h2> -->
 <!--             {{ ('物料') }} -->
 <!--         </h2> -->
     </div>
     
-    @if ($addrs->count())
+    @if ($contacts->count())
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>省份</th>
-                <th>城市</th>
-                <th>地址</th>
+                <th>物料编号</th>
+                <th>物料类别</th>
+                <th>名称</th>
+                <th>物料类型</th>
                 <th>创建日期</th>
+                <th>BOM</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($addrs as $addr)
+            @foreach($items as $item)
                 <tr>
                     <td>
-                        {{ $addr->province->name }}
+                        <a href="{{ url('/items', $item->id) }}">{{ $item->item_number }}</a>
                     </td>
                     <td>
-                        {{ $addr->city->name }}
+<!--                         {{ $item->market_price }} -->
+                        {{ $item->itemclass->name }}
                     </td>
                     <td>
-                        {{ $addr->line1 }}
+                        {{ $item->item_name }}
                     </td>
                     <td>
-                        {{ $addr->created_at }}
+                        {{ $item->itemtype->name }}
                     </td>
                     <td>
-                        <a href="{{ URL::to('/addr/addrs/'.$addr->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
-                        {!! Form::open(array('route' => array('addr.addrs.destroy', $addr->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
+                        {{ $item->created_at }}
+                    </td>
+                    <td>
+                        @if ($item->itemtype->name == '生产' || $item->itemtype->name == '采购')
+                            <a href="{{ URL::to('boms/' . $item->id . '/edit') }}" target="_blank">编辑</a>
+                        @else
+                            --
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{ URL::to('/items/'.$item->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
+                        {!! Form::open(array('route' => array('items.destroy', $item->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
                             {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </td>
@@ -48,7 +61,7 @@
         </tbody>
 
     </table>
-    {!! $addrs->render() !!}
+    {!! $contacts->render() !!}
     @else
     <div class="alert alert-warning alert-block">
         <i class="fa fa-warning"></i>

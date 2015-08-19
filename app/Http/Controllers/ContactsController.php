@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Addr;
+namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Contact;
 
-use App\Addr;
-use App\Http\Requests\Addr\AddrRequest;
-use Request;
-
-class AddrsController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +18,8 @@ class AddrsController extends Controller
     public function index()
     {
         //
-        $addrs = Addr::latest('created_at')->with('province')->with('city')->paginate(10);
-        return view('addr.addrs.index', compact('addrs'));
+        $contacts = Contact::latest('created_at')->with('city')->paginate(10);
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -33,7 +30,7 @@ class AddrsController extends Controller
     public function create()
     {
         //
-        return view('addr.addrs.create');
+        return view('contacts.create');
     }
 
     /**
@@ -42,12 +39,9 @@ class AddrsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(AddrRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = Request::all();
-        Addr::create($input);
-        return redirect('addr/addrs');
     }
 
     /**
@@ -70,8 +64,6 @@ class AddrsController extends Controller
     public function edit($id)
     {
         //
-        $addr = Addr::findOrFail($id);
-        return view('addr.addrs.edit', compact('addr'));
     }
 
     /**
@@ -81,12 +73,9 @@ class AddrsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(AddrRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $addr = Addr::findOrFail($id);
-        $addr->update($request->all());
-        return redirect('addr/addrs');
     }
 
     /**
@@ -98,7 +87,5 @@ class AddrsController extends Controller
     public function destroy($id)
     {
         //
-        Addr::destroy($id);
-        return redirect('addr/addrs');
     }
 }

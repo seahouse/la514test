@@ -38,6 +38,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">客户关系<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="/contacts">联系人</a></li>
                                 <li><a href="/addr/addrs">地址</a></li>
                             </ul>
                         </li>

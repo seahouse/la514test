@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('boms', 'BomsController');
     Route::get('bomitems/{id}/createitem', 'BomitemsController@createitem');
     Route::resource('bomitems', 'BomitemsController');
+    Route::resource('contacts', 'ContactsController');
 
     Route::get('api/dropdown', 'Addr\ProvincesController@getIndex');
 
