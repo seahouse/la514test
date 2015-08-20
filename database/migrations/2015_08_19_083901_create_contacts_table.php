@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             
             $table->boolean('active')->nullable()->default(true);
             $table->text('name')->nullable()->default('');
-            $table->integer('city_id')->nullable();
+            $table->integer('addr_id')->nullable();
             $table->text('phone')->nullable()->default('');
             $table->text('phone2')->nullable()->default('');
             $table->text('fax')->nullable()->default('');
@@ -26,7 +26,7 @@ class CreateContactsTable extends Migration
             
             $table->timestamps();
 
-            $table->foreign('city_id')->references('id')->on('citys');
+            $table->foreign('addr_id')->references('id')->on('addrs');
         });
     }
 

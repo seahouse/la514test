@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\System;
 
 // use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Contact;
-use App\Http\Requests\ContactRequest;
+use App\Http\Requests\System\DeptRequest;
+use App\System\Dept;
 use Request;
 
-class ContactsController extends Controller
+class DeptsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class ContactsController extends Controller
     public function index()
     {
         //
-        $contacts = Contact::latest('created_at')->with('addr')->paginate(10);
-        return view('contacts.index', compact('contacts'));
+        $depts = Dept::latest('created_at')->paginate(10);
+        return view('system.depts.index', compact('depts'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ContactsController extends Controller
     public function create()
     {
         //
-        return view('contacts.create');
+        return view('system.depts.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class ContactsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ContactRequest $request)
+    public function store(DeptRequest $request)
     {
         //
         $input = Request::all();
-        Contact::create($input);
-        return redirect('contacts');
+        Dept::create($input);
+        return redirect('system/depts');
     }
 
     /**
@@ -70,8 +70,8 @@ class ContactsController extends Controller
     public function edit($id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        return view('contacts.edit', compact('contact'));
+        $dept = Dept::findOrFail($id);
+        return view('system.depts.edit', compact('dept'));
     }
 
     /**
@@ -81,12 +81,12 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(ContactRequest $request, $id)
+    public function update(DeptRequest $request, $id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        $contact->update($request->all());
-        return redirect('contacts');
+        $dept = Dept::findOrFail($id);
+        $dept->update($request->all());
+        return redirect('system/depts');
     }
 
     /**
@@ -98,7 +98,7 @@ class ContactsController extends Controller
     public function destroy($id)
     {
         //
-        Contact::destroy($id);
-        return redirect('contacts');
+        Dept::destroy($id);
+        return redirect('system/depts');
     }
 }

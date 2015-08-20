@@ -7,11 +7,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Contact;
-use App\Http\Requests\ContactRequest;
+use App\Custinfo;
+use App\Http\Requests\CustinfoRequest;
 use Request;
 
-class ContactsController extends Controller
+class CustinfosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class ContactsController extends Controller
     public function index()
     {
         //
-        $contacts = Contact::latest('created_at')->with('addr')->paginate(10);
-        return view('contacts.index', compact('contacts'));
+        $custinfos = Custinfo::latest('created_at')->with('contact')->paginate(10);
+        return view('custinfos.index', compact('custinfos'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ContactsController extends Controller
     public function create()
     {
         //
-        return view('contacts.create');
+        return view('custinfos.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class ContactsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ContactRequest $request)
+    public function store(CustinfoRequest $request)
     {
         //
         $input = Request::all();
-        Contact::create($input);
-        return redirect('contacts');
+        Custinfo::create($input);
+        return redirect('custinfos');
     }
 
     /**
@@ -70,8 +70,8 @@ class ContactsController extends Controller
     public function edit($id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        return view('contacts.edit', compact('contact'));
+        $custinfo = Custinfo::findOrFail($id);
+        return view('custinfos.edit', compact('custinfo'));
     }
 
     /**
@@ -81,12 +81,12 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(ContactRequest $request, $id)
+    public function update(CustinfoRequest $request, $id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        $contact->update($request->all());
-        return redirect('contacts');
+        $custinfo = Custinfo::findOrFail($id);
+        $custinfo->update($request->all());
+        return redirect('custinfos');
     }
 
     /**
@@ -98,7 +98,7 @@ class ContactsController extends Controller
     public function destroy($id)
     {
         //
-        Contact::destroy($id);
-        return redirect('contacts');
+        Custinfo::destroy($id);
+        return redirect('custinfos');
     }
 }

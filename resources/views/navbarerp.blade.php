@@ -32,14 +32,21 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">销售<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">销售订单</a></li>
-                                <li><a href="#">客户</a></li>
+                                <li><a href="/custinfos">客户</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">客户关系<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="/crmaddounts">账户</a></li>
                                 <li><a href="/contacts">联系人</a></li>
                                 <li><a href="/addr/addrs">地址</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/system/employees">员工</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\System;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Contact;
-use App\Http\Requests\ContactRequest;
-use Request;
-
-class ContactsController extends Controller
+class EmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +17,8 @@ class ContactsController extends Controller
     public function index()
     {
         //
-        $contacts = Contact::latest('created_at')->with('addr')->paginate(10);
-        return view('contacts.index', compact('contacts'));
+//         $employees = Custinfo::latest('created_at')->with('contact')->paginate(10);
+        return view('system.employees.index');
     }
 
     /**
@@ -33,7 +29,6 @@ class ContactsController extends Controller
     public function create()
     {
         //
-        return view('contacts.create');
     }
 
     /**
@@ -42,12 +37,9 @@ class ContactsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = Request::all();
-        Contact::create($input);
-        return redirect('contacts');
     }
 
     /**
@@ -70,8 +62,6 @@ class ContactsController extends Controller
     public function edit($id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        return view('contacts.edit', compact('contact'));
     }
 
     /**
@@ -81,12 +71,9 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(ContactRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $contact = Contact::findOrFail($id);
-        $contact->update($request->all());
-        return redirect('contacts');
     }
 
     /**
@@ -98,7 +85,5 @@ class ContactsController extends Controller
     public function destroy($id)
     {
         //
-        Contact::destroy($id);
-        return redirect('contacts');
     }
 }

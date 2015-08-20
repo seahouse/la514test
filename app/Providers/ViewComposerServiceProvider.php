@@ -37,6 +37,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer(array('addr.addrs.create', 'addr.addrs.edit'), function($view) {
             $view->with('cityList', \App\City::orderby('id', 'asc')->lists('name', 'id'));
         });
+        
+        // addrList
+        view()->composer(array('contacts.create', 'contacts.edit'), function($view) {
+            $view->with('addrList', \App\Addr::orderby('id', 'asc')->lists('line1', 'id'));
+        });
+        
+        // contactList
+        view()->composer(array('custinfos.create', 'custinfos.edit'), function($view) {
+            $view->with('contactList', \App\Contact::orderby('id', 'asc')->lists('name', 'id'));
+        });
     }
 
     /**

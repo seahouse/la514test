@@ -4,28 +4,28 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('item_name', '物料名称:') !!}
-    {!! Form::text('item_name', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('item_descrip', '描述:') !!}
-    {!! Form::text('item_descrip', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('itemclass_id', '物料类别:') !!}
-    {!! Form::select('itemclass_id', $itemclassList, null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
     {!! Form::label('addr_id', '地址:') !!}
-    {!! Form::select('addr_id', $itemtypeList, null, ['class' => 'form-control']) !!}
+    {!! Form::select('addr_id', $addrList, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('marketprice', '价格:') !!}
-    {!! Form::text('marketprice', '0.0', ['class' => 'form-control']) !!}
+    {!! Form::label('phone', '电话:') !!}
+    {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('phone2', '电话2:') !!}
+    {!! Form::text('phone2', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('fax', '传真:') !!}
+    {!! Form::text('fax', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('email', '电子邮箱:') !!}
+    {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

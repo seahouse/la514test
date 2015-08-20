@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('bomitems/{id}/createitem', 'BomitemsController@createitem');
     Route::resource('bomitems', 'BomitemsController');
     Route::resource('contacts', 'ContactsController');
+    Route::resource('custinfos', 'CustinfosController');
 
     Route::get('api/dropdown', 'Addr\ProvincesController@getIndex');
 
@@ -56,6 +57,11 @@ Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth']
     Route::resource('addrs', 'AddrsController');
     Route::resource('provinces', 'ProvincesController');
     Route::resource('citys', 'CitysController');
+});
+
+Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
+    Route::resource('employees', 'EmployeesController');
+    Route::resource('depts', 'DeptsController');
 });
 
 // Authentication routes...
