@@ -62,6 +62,7 @@ Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth']
 Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
     Route::resource('employees', 'EmployeesController');
     Route::resource('depts', 'DeptsController');
+    Route::resource('images', 'ImagesController');
 });
 
 // Authentication routes...
