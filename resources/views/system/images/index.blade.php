@@ -11,6 +11,7 @@
             <tr>
                 <th>名称</th>
                 <th>描述</th>
+                <th>创建日期</th>
                 <th>操作</th>
             </tr>
         </thead>

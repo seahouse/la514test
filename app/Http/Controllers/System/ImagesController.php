@@ -86,10 +86,22 @@ class ImagesController extends Controller
     {
         //
         $path = $request->get('path');
-        $pathDest = 'images/' . substr($path, strrpos($path, '\\') + 1);
-        Storage::put($pathDest, file_get_contents(iconv('utf-8', 'gbk', $path)));
+        $pathDest = '';
+        if ($path <> '')
+        {
+            $sExtension = substr($path, strrpos($path, '.') + 1);
+            $sFilename = date('YmdHis').rand(100, 200) . '.' . $sExtension;
+            //         $pathDest = 'images/' . substr($path, strrpos($path, '\\') + 1);
+            $pathDest = 'images/' . $sFilename;
+            Storage::put($pathDest, file_get_contents(iconv('utf-8', 'gbk', $path)));
+        }
         
         $image = Image::findOrFail($id);
+        
+        if ($path == '')
+        {
+            $pathDest = $image->path;
+        }
         
         $image->update($request->all());
         $image->path = $pathDest;
