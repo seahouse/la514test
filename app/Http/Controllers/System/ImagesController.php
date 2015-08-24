@@ -11,6 +11,7 @@ use App\System\Image;
 use App\Http\Requests\System\ImageRequest;
 use Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 class ImagesController extends Controller
 {
@@ -46,6 +47,13 @@ class ImagesController extends Controller
     public function store(ImageRequest $request)
     {
         //
+        if (Request::hasFile('image'))
+        {
+            $file = Request::file('image');
+            $file->move('uploads', $file->getClientOriginalName());
+        }
+        return 'cccc';
+        
         $input = Request::all();
         Image::create($input);
         return redirect('system/images');
@@ -85,26 +93,33 @@ class ImagesController extends Controller
     public function update(ImageRequest $request, $id)
     {
         //
-        $path = $request->get('path');
-        $pathDest = '';
-        if ($path <> '')
+        return 'aaaa';
+        if (Request::hasFile('image'))
         {
-            $sExtension = substr($path, strrpos($path, '.') + 1);
-            $sFilename = date('YmdHis').rand(100, 200) . '.' . $sExtension;
-            //         $pathDest = 'images/' . substr($path, strrpos($path, '\\') + 1);
-            $pathDest = 'images/' . $sFilename;
-            Storage::put($pathDest, file_get_contents(iconv('utf-8', 'gbk', $path)));
+            return 'bbb';
+            $file = Request::file('path');
+            $file->move('uploads', $file->getClientOriginalName());
         }
+        
+//         $path = $request->get('path');
+//         $pathDest = '';
+//         if ($path <> '')
+//         {
+//             $sExtension = substr($path, strrpos($path, '.') + 1);
+//             $sFilename = date('YmdHis').rand(100, 200) . '.' . $sExtension;
+//             $pathDest = 'images/' . $sFilename;
+//             Storage::put($pathDest, file_get_contents(iconv('utf-8', 'gbk', $path)));            
+//         }
         
         $image = Image::findOrFail($id);
         
-        if ($path == '')
-        {
-            $pathDest = $image->path;
-        }
+//         if ($path == '')
+//         {
+//             $pathDest = $image->path;
+//         }
         
         $image->update($request->all());
-        $image->path = $pathDest;
+//         $image->path = $pathDest;
         $image->save();
         return redirect('system/images');
     }
