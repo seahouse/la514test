@@ -147,7 +147,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
 //         Folklore\Image\ImageServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+//         Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -200,7 +200,7 @@ return [
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 //         'Image'     => Folklore\Image\Facades\Image::class,
-        'Image'     => Intervention\Image\Facades\Image::class,
+//         'Image'     => Intervention\Image\Facades\Image::class,
 
     ],
 

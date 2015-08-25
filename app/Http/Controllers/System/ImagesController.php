@@ -38,6 +38,8 @@ class ImagesController extends Controller
         return view('system.images.create');
     }
 
+
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -47,14 +49,21 @@ class ImagesController extends Controller
     public function store(ImageRequest $request)
     {
         //
+        $sFilename = '';
         if (Request::hasFile('image'))
         {
             $file = Request::file('image');
-            $file->move('uploads', $file->getClientOriginalName());
+            $sFilename = $this->saveImg($file);
+            
+// //             $file->move('images', $file->getClientOriginalName());
+//             $fileOriginalName = $file->getClientOriginalName();
+//             $sExtension = substr($fileOriginalName, strrpos($fileOriginalName, '.') + 1);
+//             $sFilename = date('YmdHis').rand(100, 200) . '.' . $sExtension;
+//             $file->move('images', $sFilename);
         }
-        return 'cccc';
         
         $input = Request::all();
+        $input = array_add($input, 'path', $sFilename);
         Image::create($input);
         return redirect('system/images');
     }
@@ -93,12 +102,11 @@ class ImagesController extends Controller
     public function update(ImageRequest $request, $id)
     {
         //
-        return 'aaaa';
+        $sFilename = '';
         if (Request::hasFile('image'))
         {
-            return 'bbb';
-            $file = Request::file('path');
-            $file->move('uploads', $file->getClientOriginalName());
+            $file = Request::file('image');
+            $sFilename = $this->saveImg($file);
         }
         
 //         $path = $request->get('path');
@@ -119,7 +127,7 @@ class ImagesController extends Controller
 //         }
         
         $image->update($request->all());
-//         $image->path = $pathDest;
+        $image->path = $sFilename;
         $image->save();
         return redirect('system/images');
     }
@@ -135,5 +143,14 @@ class ImagesController extends Controller
         //
         Image::destroy($id);
         return redirect('system/images');
+    }
+    
+    private function saveImg($file)
+    {
+        $fileOriginalName = $file->getClientOriginalName();
+        $sExtension = substr($fileOriginalName, strrpos($fileOriginalName, '.') + 1);
+        $sFilename = date('YmdHis').rand(100, 200) . '.' . $sExtension;
+        $file->move('images', $sFilename);
+        return 'images/' . $sFilename;
     }
 }

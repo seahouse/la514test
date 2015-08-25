@@ -47,6 +47,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer(array('custinfos.create', 'custinfos.edit'), function($view) {
             $view->with('contactList', \App\Contact::orderby('id', 'asc')->lists('name', 'id'));
         });
+        
+        // deptList
+        view()->composer(array('system.employees.create', 'system.employees.edit'), function($view) {
+            $view->with('deptList', \App\System\Dept::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // imageList
+        view()->composer(array('system.employees.create', 'system.employees.edit'), function($view) {
+            $view->with('imageList', \App\System\Image::orderby('id', 'asc')->lists('name', 'id'));
+        });
     }
 
     /**
