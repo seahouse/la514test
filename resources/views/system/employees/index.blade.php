@@ -34,7 +34,7 @@
                         {{ $employee->name }}
                     </td>
                     <td>
-                        {{ $employee->dept->name }}
+                        @if (isset($employee->dept->name)) {{ $employee->dept->name }} @endif
                     </td>
                     <td>
                         {{ $employee->startdate }}

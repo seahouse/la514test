@@ -5,7 +5,7 @@
     <hr/>
     
     {!! Form::open(['url' => 'system/employees']) !!}
-        @include('system.employees._form', ['submitButtonText' => '添加', 'startdate' => date('Y-m-d')])
+        @include('system.employees._form', ['submitButtonText' => '添加', 'startdate' => DB::raw('NOW()')])
     {!! Form::close() !!}
     
 
