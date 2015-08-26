@@ -39,12 +39,12 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
         
         // addrList
-        view()->composer(array('contacts.create', 'contacts.edit'), function($view) {
+        view()->composer(array('contacts.create', 'contacts.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit'), function($view) {
             $view->with('addrList', \App\Addr::orderby('id', 'asc')->lists('line1', 'id'));
         });
         
         // contactList
-        view()->composer(array('custinfos.create', 'custinfos.edit'), function($view) {
+        view()->composer(array('custinfos.create', 'custinfos.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit'), function($view) {
             $view->with('contactList', \App\Contact::orderby('id', 'asc')->lists('name', 'id'));
         });
         

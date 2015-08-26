@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\System;
+namespace App\Http\Controllers\Sales;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\System\EmployeeRequest;
-use App\System\Employee;
-use Request;
-
-class EmployeesController extends Controller
+class SalesOrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +17,7 @@ class EmployeesController extends Controller
     public function index()
     {
         //
-        $employees = Employee::latest('created_at')->with('dept')->paginate(10);
-        return view('system.employees.index', compact('employees'));
+        return view('sales.salesorders.index');
     }
 
     /**
@@ -33,7 +28,6 @@ class EmployeesController extends Controller
     public function create()
     {
         //
-        return view('system.employees.create');
     }
 
     /**
@@ -42,12 +36,9 @@ class EmployeesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(EmployeeRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = Request::all();
-        Employee::create($input);
-        return redirect('system/employees');
     }
 
     /**
@@ -70,8 +61,6 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        return view('system.employees.edit', compact('employee'));
     }
 
     /**
@@ -81,12 +70,9 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(EmployeeRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        $employee->update($request->all());
-        return redirect('system/employees');
     }
 
     /**
@@ -98,7 +84,5 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         //
-        Employee::destroy($id);
-        return redirect('system/employees');
     }
 }

@@ -29,9 +29,15 @@
                             </ul>
                         </li>
                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">库存<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/inventory/warehouses">仓库</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">销售<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">销售订单</a></li>
+                                <li><a href="/sales/salesorders">销售订单</a></li>
                                 <li><a href="/custinfos">客户</a></li>
                             </ul>
                         </li>

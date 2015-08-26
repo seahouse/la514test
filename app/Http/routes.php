@@ -65,6 +65,15 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
     Route::resource('images', 'ImagesController');
 });
 
+Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' => 'auth'], function() {
+    Route::resource('warehouses', 'WarehousesController');
+});
+
+Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
+    Route::resource('salesorders', 'SalesordersController');
+    Route::resource('salesreps', 'SalesrepsController');
+});
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

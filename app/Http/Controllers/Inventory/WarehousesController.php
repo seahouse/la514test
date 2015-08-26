@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\System;
+namespace App\Http\Controllers\Inventory;
 
 // use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\System\EmployeeRequest;
-use App\System\Employee;
+use App\Inventory\Warehouse;
+use App\Http\Requests\Inventory\WarehouseRequest;
 use Request;
 
-class EmployeesController extends Controller
+class WarehousesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class EmployeesController extends Controller
     public function index()
     {
         //
-        $employees = Employee::latest('created_at')->with('dept')->paginate(10);
-        return view('system.employees.index', compact('employees'));
+        $warehouses = Warehouse::latest('created_at')->paginate(10);
+        return view('inventory.warehouses.index', compact('warehouses'));
     }
 
     /**
@@ -33,7 +33,7 @@ class EmployeesController extends Controller
     public function create()
     {
         //
-        return view('system.employees.create');
+        return view('inventory.warehouses.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class EmployeesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(EmployeeRequest $request)
+    public function store(WarehouseRequest $request)
     {
         //
         $input = Request::all();
-        Employee::create($input);
-        return redirect('system/employees');
+        Warehouse::create($input);
+        return redirect('inventory/warehouses');
     }
 
     /**
@@ -70,8 +70,8 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        return view('system.employees.edit', compact('employee'));
+        $warehouse = Warehouse::findOrFail($id);
+        return view('inventory.warehouses.edit', compact('warehouse'));
     }
 
     /**
@@ -81,12 +81,12 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(EmployeeRequest $request, $id)
+    public function update(WarehouseRequest $request, $id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        $employee->update($request->all());
-        return redirect('system/employees');
+        $warehouse = Warehouse::findOrFail($id);
+        $warehouse->update($request->all());
+        return redirect('inventory/warehouses');
     }
 
     /**
@@ -98,7 +98,7 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         //
-        Employee::destroy($id);
-        return redirect('system/employees');
+        Warehouse::destroy($id);
+        return redirect('inventory/warehouses');
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\System;
+namespace App\Http\Controllers\Sales;
 
 // use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\System\EmployeeRequest;
-use App\System\Employee;
+use App\Sales\Salesrep;
+use App\Http\Requests\Sales\SalesrepRequest;
 use Request;
 
-class EmployeesController extends Controller
+class SalesrepsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class EmployeesController extends Controller
     public function index()
     {
         //
-        $employees = Employee::latest('created_at')->with('dept')->paginate(10);
-        return view('system.employees.index', compact('employees'));
+        $salesreps = Salesrep::latest('created_at')->paginate(10);
+        return view('sales.salesreps.index', compact('salesreps'));
     }
 
     /**
@@ -33,7 +33,7 @@ class EmployeesController extends Controller
     public function create()
     {
         //
-        return view('system.employees.create');
+        return view('sales.salesreps.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class EmployeesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(EmployeeRequest $request)
+    public function store(SalesrepRequest $request)
     {
         //
         $input = Request::all();
-        Employee::create($input);
-        return redirect('system/employees');
+        Salesrep::create($input);
+        return redirect('sales/salesreps');
     }
 
     /**
@@ -70,8 +70,8 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        return view('system.employees.edit', compact('employee'));
+        $salesrep = Salesrep::findOrFail($id);
+        return view('sales.salesreps.edit', compact('salesrep'));
     }
 
     /**
@@ -81,12 +81,12 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(EmployeeRequest $request, $id)
+    public function update(SalesrepRequest $request, $id)
     {
         //
-        $employee = Employee::findOrFail($id);
-        $employee->update($request->all());
-        return redirect('system/employees');
+        $salesrep = Salesrep::findOrFail($id);
+        $salesrep->update($request->all());
+        return redirect('sales/salesreps');
     }
 
     /**
@@ -98,7 +98,7 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         //
-        Employee::destroy($id);
-        return redirect('system/employees');
+        Salesrep::destroy($id);
+        return redirect('sales/salesreps');
     }
 }
