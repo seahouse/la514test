@@ -7,11 +7,11 @@ namespace App\Http\Controllers\Sales;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Sales\Salesorder;
-use App\Http\Requests\Sales\SalesorderRequest;
+use App\Sales\Term;
+use App\Http\Requests\Sales\TermRequest;
 use Request;
 
-class SalesOrdersController extends Controller
+class TermsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class SalesOrdersController extends Controller
     public function index()
     {
         //
-        $salesorders = Salesorder::latest('created_at')->paginate(10);
-        return view('sales.salesorders.index', compact('salesorders'));
+        $terms = Term::latest('created_at')->paginate(10);
+        return view('sales.terms.index', compact('terms'));
     }
 
     /**
@@ -33,7 +33,7 @@ class SalesOrdersController extends Controller
     public function create()
     {
         //
-        return view('sales.salesorders.create');
+        return view('sales.terms.create');
     }
 
     /**
@@ -42,12 +42,12 @@ class SalesOrdersController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(SalesorderRequest $request)
+    public function store(TermRequest $request)
     {
         //
         $input = Request::all();
-        Salesorder::create($input);
-        return redirect('sales/salesorders');
+        Term::create($input);
+        return redirect('sales/terms');
     }
 
     /**
@@ -70,8 +70,8 @@ class SalesOrdersController extends Controller
     public function edit($id)
     {
         //
-        $salesorder = Salesorder::findOrFail($id);
-        return view('sales.salesorders.edit', compact('salesorder'));
+        $term = Term::findOrFail($id);
+        return view('sales.terms.edit', compact('term'));
     }
 
     /**
@@ -81,12 +81,12 @@ class SalesOrdersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(SalesorderRequest $request, $id)
+    public function update(TermRequest $request, $id)
     {
         //
-        $salesorder = Salesorder::findOrFail($id);
-        $salesorder->update($request->all());
-        return redirect('sales/salesorders');
+        $term = Term::findOrFail($id);
+        $term->update($request->all());
+        return redirect('sales/terms');
     }
 
     /**
@@ -98,7 +98,7 @@ class SalesOrdersController extends Controller
     public function destroy($id)
     {
         //
-        Salesorder::destroy($id);
-        return redirect('sales/salesorders');
+        Term::destroy($id);
+        return redirect('sales/terms');
     }
 }

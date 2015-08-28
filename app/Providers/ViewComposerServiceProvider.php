@@ -14,7 +14,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // itemList
-        view()->composer(array('bomitems.createitem', 'bomitems.edit'), function($view) {
+        view()->composer(array('bomitems.createitem', 'bomitems.edit', 'sales.soitems.create', 'sales.soitems.edit'), function($view) {
             $view->with('itemList', \App\Item::orderby('id', 'asc')->lists('item_number', 'id'));
         });
         
@@ -56,6 +56,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         // imageList
         view()->composer(array('system.employees.create', 'system.employees.edit'), function($view) {
             $view->with('imageList', \App\System\Image::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // custinfoList
+        view()->composer(array('sales.salesorders.create', 'sales.salesorders.edit'), function($view) {
+            $view->with('custinfoList', \App\Custinfo::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // salesrepList
+        view()->composer(array('sales.salesorders.create', 'sales.salesorders.edit'), function($view) {
+            $view->with('salesrepList', \App\Sales\Salesrep::orderby('id', 'asc')->lists('name', 'id'));
         });
     }
 

@@ -72,6 +72,10 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
     Route::resource('salesorders', 'SalesordersController');
     Route::resource('salesreps', 'SalesrepsController');
+    Route::resource('terms', 'TermsController');
+    Route::get('soitems/{headId}/list', 'SoitemsController@listBySoheadId');
+    Route::get('soitems/{headId}/create', 'SoitemsController@createBySoheadId');
+    Route::resource('soitems', 'SoitemsController');
 });
 
 // Authentication routes...

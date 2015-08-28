@@ -7,11 +7,11 @@ namespace App\Http\Controllers\Sales;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Sales\Salesorder;
-use App\Http\Requests\Sales\SalesorderRequest;
+use App\Sales\Soitem;
+use App\Http\Requests\Sales\SoitemRequest;
 use Request;
 
-class SalesOrdersController extends Controller
+class SoitemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,14 @@ class SalesOrdersController extends Controller
     public function index()
     {
         //
-        $salesorders = Salesorder::latest('created_at')->paginate(10);
-        return view('sales.salesorders.index', compact('salesorders'));
+        $soitems = Soitem::latest('created_at')->paginate(10);
+        return view('sales.soitems.index', compact('soitems'));
+    }
+    
+    public function listBySoheadId($headId)
+    {
+        $soitems = Soitem::latest('created_at')->where('sohead_id', $headId)->paginate(10);
+        return view('sales.soitems.index', compact('soitems', 'headId'));
     }
 
     /**
@@ -33,7 +39,13 @@ class SalesOrdersController extends Controller
     public function create()
     {
         //
-        return view('sales.salesorders.create');
+        return view('sales.soitems.create');
+    }
+    
+    public function createBySoheadId($headId)
+    {
+        //
+        return view('sales.soitems.create', compact('headId'));
     }
 
     /**
@@ -42,12 +54,12 @@ class SalesOrdersController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(SalesorderRequest $request)
+    public function store(SoitemRequest $request)
     {
         //
         $input = Request::all();
-        Salesorder::create($input);
-        return redirect('sales/salesorders');
+        Soitem::create($input);
+        return redirect('sales/soitems/' . $request->get('sohead_id') . '/list');
     }
 
     /**
@@ -70,8 +82,9 @@ class SalesOrdersController extends Controller
     public function edit($id)
     {
         //
-        $salesorder = Salesorder::findOrFail($id);
-        return view('sales.salesorders.edit', compact('salesorder'));
+        $soitem = Soitem::findOrFail($id);
+        $headId = $soitem->head_id;
+        return view('sales.soitems.edit', compact('soitem', 'headId'));
     }
 
     /**
@@ -81,12 +94,12 @@ class SalesOrdersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(SalesorderRequest $request, $id)
+    public function update(SoitemRequest $request, $id)
     {
         //
-        $salesorder = Salesorder::findOrFail($id);
-        $salesorder->update($request->all());
-        return redirect('sales/salesorders');
+        $soitem = Soitem::findOrFail($id);
+        $soitem->update($request->all());
+        return redirect('sales/soitems/' . $request->get('sohead_id') . '/list');
     }
 
     /**
@@ -98,7 +111,7 @@ class SalesOrdersController extends Controller
     public function destroy($id)
     {
         //
-        Salesorder::destroy($id);
-        return redirect('sales/salesorders');
+        Soitem::destroy($id);
+        return redirect('sales/soitems');
     }
 }

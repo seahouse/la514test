@@ -2,43 +2,47 @@
 
 @section('main')
     <div class="panel-heading">
-        <a href="employees/create" class="btn btn-sm btn-success">新建</a>
+        <a href="salesorders/create" class="btn btn-sm btn-success">新建</a>
        <div class="pull-right" style="padding-top: 4px;">
             <a href="{{ URL::to('sales/salesreps') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'销售代表管理', [], 'layouts'}}</a>
-{{--            <a href="{{ URL::to('system/images') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'图片管理', [], 'layouts'}}</a> --}}
+            <a href="{{ URL::to('sales/terms') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'付款条款管理', [], 'layouts'}}</a>
         </div>
     </div>
     
-{{--
-    @if ($employees->count())
+
+    @if ($salesorders->count())
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
                 <th>编号</th>
-                <th>姓名</th>
-                <th>部门</th>
-                <th>入职日期</th>
+                <th>客户</th>
+                <th>订单日期</th>
+                <th>销售代表</th>
+                <th>物料</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($employees as $employee)
+            @foreach($salesorders as $salesorder)
                 <tr>
                     <td>
-                        {{ $employee->number }}
+                        {{ $salesorder->number }}
                     </td>
                     <td>
-                        {{ $employee->name }}
+                        {{ $salesorder->custinfo->name }}
                     </td>
                     <td>
-                        @if (isset($employee->dept->name)) {{ $employee->dept->name }} @endif
+                        {{ $salesorder->orderdate }}
                     </td>
                     <td>
-                        {{ $employee->startdate }}
+                        @if (isset($salesorder->salesrep->name)) {{ $salesorder->salesrep->name }} @endif
                     </td>
                     <td>
-                        <a href="{{ URL::to('/system/employees/'.$employee->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
-                        {!! Form::open(array('route' => array('system.employees.destroy', $employee->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
+                        <a href="{{ URL::to('/sales/soitems/' . $salesorder->id . '/list') }}" target="_blank">明细</a>
+                    </td>
+                    <td>
+                        <a href="{{ URL::to('/sales/salesorders/'.$salesorder->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
+                        {!! Form::open(array('route' => array('sales.salesorders.destroy', $salesorder->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
                             {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </td>
@@ -47,12 +51,12 @@
         </tbody>
 
     </table>
-    {!! $employees->render() !!}
+    {!! $salesorders->render() !!}
     @else
     <div class="alert alert-warning alert-block">
         <i class="fa fa-warning"></i>
         {{'无记录', [], 'layouts'}}
     </div>
     @endif    
---}}
+
 @stop
