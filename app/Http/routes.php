@@ -67,9 +67,12 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
 
 Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' => 'auth'], function() {
     Route::resource('warehouses', 'WarehousesController');
+    Route::get('inventoryAvailability', 'InventoryAvailabilityController@listByItems');
+    Route::get('inventoryAvailabilityBySalesorder', 'InventoryAvailabilityController@listBySalesorder');
 });
 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
+    Route::get('salesorders/{id}/ship', 'SalesordersController@ship');
     Route::resource('salesorders', 'SalesordersController');
     Route::resource('salesreps', 'SalesrepsController');
     Route::resource('terms', 'TermsController');

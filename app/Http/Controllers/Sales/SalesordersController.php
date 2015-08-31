@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 use App\Sales\Salesorder;
 use App\Http\Requests\Sales\SalesorderRequest;
 use Request;
+use App\Inventory\Itemsite;
+use Carbon\Carbon;
+use App\Inventory\Shipitem;
+use App\Sales\Soitem;
 
 class SalesOrdersController extends Controller
 {
@@ -99,6 +103,41 @@ class SalesOrdersController extends Controller
     {
         //
         Salesorder::destroy($id);
+        return redirect('sales/salesorders');
+    }
+    
+    public function ship($id)
+    {
+        $soitems = Salesorder::find($id)->soitems;
+        foreach ($soitems as $soitem)
+        {
+            $forQtyshipped = $soitem->qty - $soitem->qtyshipped;
+            if ($forQtyshipped > 0.0)
+            {
+                $itemsite = $soitem->itemsite;
+                if ($itemsite == null)
+                    return $soitem->item->item_number . '无库存记录';
+                
+                if ($itemsite->qtyonhand < $forQtyshipped)
+                    return $soitem->item->item_number . ', 库存已不够，无法发货。';
+                
+                // create shipto record
+                $data = [
+                    'orderitem_id' => $soitem->id,
+                    'quantity' => $forQtyshipped,
+                    'shipdate' => Carbon::now(),
+                ];
+                Shipitem::create($data);
+                
+                // update soitem qtyshipped
+                $soitem->qtyshipped = $soitem->qtyshipped + $forQtyshipped;
+                $soitem->save();
+                
+                // update itemsite qtyonhand
+                $itemsite->qtyonhand = $itemsite->qtyonhand - $forQtyshipped;
+                $itemsite->save();
+            }
+        }
         return redirect('sales/salesorders');
     }
 }

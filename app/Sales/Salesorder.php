@@ -35,4 +35,8 @@ class Salesorder extends Model
     public function term() {
         return $this->hasOne('App\Sales\Term', 'id');
     }
+    
+    public function soitems() {
+        return $this->hasMany('App\Sales\Soitem', 'sohead_id');
+    }
 }

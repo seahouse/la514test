@@ -12,6 +12,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Itemclass;
 use App\Itemtype;
+use App\Inventory\Warehouse;
+use App\Inventory\Itemsite;
 
 class ItemsController extends Controller
 {
@@ -56,7 +58,20 @@ class ItemsController extends Controller
     {
         //
         $input = Request::all();
-        Item::create($input);
+        $item = Item::create($input);
+
+        $warehouse = Warehouse::first();
+        if ($warehouse != null)
+        {
+            $data = [
+                'item_id' => $item->id,
+                'warehouse_id' => $warehouse->id,
+                'qtyonhand' => 0.0,
+            ];
+            Itemsite::create($data);
+        }
+
+        
         return redirect('items');
     }
 
@@ -104,6 +119,19 @@ class ItemsController extends Controller
         //
         $item = Item::findOrFail($id);
         $item->update($request->all());
+        
+        $warehouse = Warehouse::first();
+        $itemsite = $item->itemsite;
+        if ($warehouse != null && $itemsite == null)
+        {
+            $data = [
+                'item_id' => $item->id,
+                'warehouse_id' => $warehouse->id,
+                'qtyonhand' => 0.0,
+            ];
+            Itemsite::create($data);
+        }
+        
         return redirect('items');
     }
 

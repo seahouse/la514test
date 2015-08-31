@@ -30,4 +30,12 @@ class Item extends Model
     public function itemtype() {
         return $this->hasOne('App\Itemtype', 'id', 'itemtype_id');
     }
+    
+    public function itemsite() {
+        return $this->hasOne('App\Inventory\Itemsite', 'item_id', 'id');
+    }
+    
+    public function soitems() {
+        return $this->hasMany('App\Sales\Soitem', 'item_id', 'id');
+    }
 }

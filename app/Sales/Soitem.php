@@ -19,10 +19,14 @@ class Soitem extends Model
     ];
     
     public function sohead() {
-        return $this->hasOne('App\Sales\Salesorder', 'id');
+        return $this->hasOne('App\Sales\Salesorder', 'id', 'sohead_id');
     }
     
     public function item() {
         return $this->hasOne('App\Item', 'id', 'item_id');
+    }
+    
+    public function itemsite() {
+        return $this->hasOne('App\Inventory\Itemsite', 'item_id', 'item_id');
     }
 }

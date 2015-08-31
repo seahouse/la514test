@@ -41,9 +41,10 @@
                         <a href="{{ URL::to('/sales/soitems/' . $salesorder->id . '/list') }}" target="_blank">明细</a>
                     </td>
                     <td>
-                        <a href="{{ URL::to('/sales/salesorders/'.$salesorder->id.'/edit') }}" class="btn btn-success btn-mini pull-left">编辑</a>
+                        <a href="{{ URL::to('/sales/salesorders/'.$salesorder->id.'/edit') }}" class="btn btn-success btn-sm pull-left">编辑</a>
+                        <a href="{{ URL::to('/sales/salesorders/' . $salesorder->id . '/ship') }}" class="btn btn-success btn-sm pull-left">发货</a>
                         {!! Form::open(array('route' => array('sales.salesorders.destroy', $salesorder->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
-                            {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('删除', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
