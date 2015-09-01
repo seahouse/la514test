@@ -29,7 +29,7 @@
                         {{ $salesorder->number }}
                     </td>
                     <td>
-                        {{ $salesorder->custinfo->name }}
+                        @if (isset($salesorder->custinfo->name)) {{ $salesorder->custinfo->name }} @endif
                     </td>
                     <td>
                         {{ $salesorder->orderdate }}
