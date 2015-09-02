@@ -39,12 +39,14 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
         
         // addrList
-        view()->composer(array('contacts.create', 'contacts.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit'), function($view) {
+        view()->composer(array('contacts.create', 'contacts.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit',
+            'purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
             $view->with('addrList', \App\Addr::orderby('id', 'asc')->lists('line1', 'id'));
         });
         
         // contactList
-        view()->composer(array('custinfos.create', 'custinfos.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit'), function($view) {
+        view()->composer(array('custinfos.create', 'custinfos.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit',
+            'purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
             $view->with('contactList', \App\Contact::orderby('id', 'asc')->lists('name', 'id'));
         });
         
@@ -66,6 +68,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         // salesrepList
         view()->composer(array('sales.salesorders.create', 'sales.salesorders.edit'), function($view) {
             $view->with('salesrepList', \App\Sales\Salesrep::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // termList
+        view()->composer(array('purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
+            $view->with('termList', \App\Sales\Term::orderby('id', 'asc')->lists('code', 'id'));
+        });
+        
+        // vendtypeList
+        view()->composer(array('purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
+            $view->with('vendtypeList', \App\Purchase\Vendtype::orderby('id', 'asc')->lists('code', 'id'));
         });
     }
 

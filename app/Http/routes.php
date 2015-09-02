@@ -81,6 +81,11 @@ Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth
     Route::resource('soitems', 'SoitemsController');
 });
 
+Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' => 'auth'], function() {
+    Route::resource('vendinfos', 'VendinfosController');
+    Route::resource('vendtypes', 'VendtypesController');
+});
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

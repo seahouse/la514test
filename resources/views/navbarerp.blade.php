@@ -46,6 +46,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">采购<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="/purchase/vendinfos">供应商</a></li>
                                 <li><a href="/inventory/inventoryAvailability">库存可用量</a></li>
                             </ul>
                         </li>
