@@ -4,7 +4,7 @@
     <div class="panel-heading">
         <a href="vendinfos/create" class="btn btn-sm btn-success">新建</a>
         <div class="pull-right" style="padding-top: 4px;">
-            <a href="{{ URL::to('purchase/vendtypes') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'客户类型管理', [], 'layouts'}}</a>
+            <a href="{{ URL::to('purchase/vendtypes') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'供应商类型管理', [], 'layouts'}}</a>
         </div>
     </div>
     
