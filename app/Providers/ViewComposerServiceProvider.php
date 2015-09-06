@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -46,7 +47,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         
         // contactList
         view()->composer(array('custinfos.create', 'custinfos.edit', 'inventory.warehouses.create', 'inventory.warehouses.edit',
-            'purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
+            'purchase.vendinfos.create', 'purchase.vendinfos.edit', 'purchase.purchaseorders.create', 'purchase.purchaseorders.edit'), function($view) {
             $view->with('contactList', \App\Contact::orderby('id', 'asc')->lists('name', 'id'));
         });
         
@@ -71,13 +72,31 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
         
         // termList
-        view()->composer(array('purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
+        view()->composer(array('purchase.vendinfos.create', 'purchase.vendinfos.edit', 'purchase.purchaseorders.create', 'purchase.purchaseorders.edit'), function($view) {
             $view->with('termList', \App\Sales\Term::orderby('id', 'asc')->lists('code', 'id'));
         });
         
         // vendtypeList
         view()->composer(array('purchase.vendinfos.create', 'purchase.vendinfos.edit'), function($view) {
             $view->with('vendtypeList', \App\Purchase\Vendtype::orderby('id', 'asc')->lists('code', 'id'));
+        });
+        
+        // vendinfoList
+        view()->composer(array('purchase.purchaseorders.create', 'purchase.purchaseorders.edit'), function($view) {
+            $view->with('vendinfoList', \App\Purchase\Vendinfo::orderby('id', 'asc')->lists('number', 'id'));
+        });
+        
+        // soheadList
+        view()->composer(array('purchase.purchaseorders.create', 'purchase.purchaseorders.edit'), function($view) {
+            $view->with('soheadList', \App\Sales\Salesorder::orderby('id', 'asc')->lists('number', 'id'));
+        });
+        
+        // itemsiteList
+        view()->composer(array('purchase.poitems.create', 'purchase.poitems.edit'), function($view) {
+//             $items = \App\Inventory\Itemsite::orderby('itemsites.id', 'asc')->leftJoin('items', 'itemsites.item_id', '=', 'items.id')->select('item_number', 'itemsites.id')->get();
+            $view->with('itemsiteList', \App\Inventory\Itemsite::orderby('itemsites.id', 'asc')->leftJoin('items', 'itemsites.item_id', '=', 'items.id')->select('item_number', 'itemsites.id')->lists('item_number', 'id'));
+//             $view->with('itemsiteList', DB::table('itemsites')->leftJoin('items', 'itemsites.item_id', '=', 'items.id')->select('item_number', 'itemsites.id')->lists('item_number', 'itemsites.id'));
+//             $view->with('itemsiteList', \App\Inventory\Itemsite::orderby('itemsites.id', 'asc')->lists('item_id', 'id'));
         });
     }
 

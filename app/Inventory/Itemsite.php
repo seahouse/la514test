@@ -13,4 +13,7 @@ class Itemsite extends Model
         'qtyonhand',
     ];
     
+    public function item() {
+        return $this->hasOne('App\Item', 'id', 'item_id');
+    }
 }
