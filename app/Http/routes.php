@@ -84,6 +84,11 @@ Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth
 Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' => 'auth'], function() {
     Route::resource('vendinfos', 'VendinfosController');
     Route::resource('vendtypes', 'VendtypesController');
+    Route::get('purchaseorders/{id}/detail', 'PurchaseordersController@detail');
+    Route::get('purchaseorders/{id}/receiving', 'PurchaseordersController@receiving');
+    Route::resource('purchaseorders', 'PurchaseordersController');
+    Route::get('poitems/{headId}/create', 'PoitemsController@createByPoheadId');
+    Route::resource('poitems', 'PoitemsController');
 });
 
 // Authentication routes...
