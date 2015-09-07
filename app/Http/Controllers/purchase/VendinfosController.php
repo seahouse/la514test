@@ -70,6 +70,8 @@ class VendinfosController extends Controller
     public function edit($id)
     {
         //
+        $vendinfo = Vendinfo::findOrFail($id);
+        return view('purchase.vendinfos.edit', compact('vendinfo'));
     }
 
     /**
@@ -79,9 +81,12 @@ class VendinfosController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(VendinfoRequest $request, $id)
     {
         //
+        $vendinfo = Vendinfo::findOrFail($id);
+        $vendinfo->update($request->all());
+        return redirect('purchase/vendinfos');
     }
 
     /**
@@ -93,5 +98,7 @@ class VendinfosController extends Controller
     public function destroy($id)
     {
         //
+        Vendinfo::destroy($id);
+        return redirect('purchase/vendinfos');
     }
 }
