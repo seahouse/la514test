@@ -11,6 +11,8 @@ use App\Purchase\Purchaseorder;
 use App\Http\Requests\Purchase\PurchaseorderRequest;
 use Request;
 use App\Purchase\Poitem;
+use Carbon\Carbon;
+use App\Inventory\Recvitem;
 
 class PurchaseordersController extends Controller
 {
@@ -112,36 +114,35 @@ class PurchaseordersController extends Controller
     public function receiving($id)
     {
         $poitems = Purchaseorder::find($id)->poitems;
-        return $poitems;
-//         foreach ($soitems as $soitem)
-//         {
-//             $forQtyshipped = $soitem->qty - $soitem->qtyshipped;
-//             if ($forQtyshipped > 0.0)
-//             {
-//                 $itemsite = $soitem->itemsite;
-//                 if ($itemsite == null)
-//                     return $soitem->item->item_number . '无库存记录';
+        foreach ($poitems as $poitem)
+        {
+            $forQtyReceive = $poitem->qty_ordered - $poitem->qty_received;
+            if ($forQtyReceive > 0.0)
+            {
+                $itemsite = $poitem->itemsite;
+                if ($itemsite == null)
+                    return $poitem->item->item_number . '无库存记录';
         
-//                 if ($itemsite->qtyonhand < $forQtyshipped)
+//                 if ($itemsite->qtyonhand < $forQtyReceive)
 //                     return $soitem->item->item_number . ', 库存已不够，无法发货。';
         
-//                 // create shipto record
-//                 $data = [
-//                     'orderitem_id' => $soitem->id,
-//                     'quantity' => $forQtyshipped,
-//                     'shipdate' => Carbon::now(),
-//                 ];
-//                 Shipitem::create($data);
+                // create receive record
+                $data = [
+                    'orderitem_id' => $poitem->id,
+                    'quantity' => $forQtyReceive,
+                    'recvdate' => Carbon::now(),
+                ];
+                Recvitem::create($data);
         
-//                 // update soitem qtyshipped
-//                 $soitem->qtyshipped = $soitem->qtyshipped + $forQtyshipped;
-//                 $soitem->save();
+                // update soitem qtyshipped
+                $poitem->qty_received = $poitem->qty_received + $forQtyReceive;
+                $poitem->save();
         
-//                 // update itemsite qtyonhand
-//                 $itemsite->qtyonhand = $itemsite->qtyonhand - $forQtyshipped;
-//                 $itemsite->save();
-//             }
-//         }
+                // update itemsite qtyonhand
+                $itemsite->qtyonhand = $itemsite->qtyonhand + $forQtyReceive;
+                $itemsite->save();
+            }
+        }
         return redirect('purchase/purchaseorders');
     }
 }

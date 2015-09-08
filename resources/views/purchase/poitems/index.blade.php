@@ -18,6 +18,7 @@
                 <th>订购数量</th>
                 <th>单价</th>
                 <th>运费</th>
+                <th>已收货</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -38,6 +39,9 @@
                     </td>
                     <td>
                         {{ $poitem->freight }}
+                    </td>
+                    <td>
+                        {{ $poitem->qty_received }}
                     </td>
                     <td>
                         <a href="{{ URL::to('/purchase/poitems/'.$poitem->id.'/edit') }}" class="btn btn-success btn-sm pull-left">编辑</a>

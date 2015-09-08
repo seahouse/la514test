@@ -36,6 +36,6 @@ class Purchaseorder extends Model
     }
     
     public function poitems() {
-        return $this->hasMany('App\Purchase\Poitem', 'poitem_id');
+        return $this->hasMany('App\Purchase\Poitem', 'pohead_id', 'id');
     }
 }

@@ -20,12 +20,14 @@ class CreatePoitemsTable extends Migration
             $table->integer('itemsite_id')->nullable();
             $table->date('duedate')->nullable();
             $table->decimal('qty_ordered', 18, 6)->default(0.0);
+            $table->decimal('qty_received', 18, 6)->default(0.0);
             $table->decimal('unitprice', 16, 6)->nullable();
             $table->text('comments')->nullable();
             $table->decimal('freight', 16, 4)->default(0.0);
             
             $table->timestamps();
 
+            $table->foreign('pohead_id')->references('id')->on('poheads');
             $table->foreign('itemsite_id')->references('id')->on('itemsites');
         });
     }
