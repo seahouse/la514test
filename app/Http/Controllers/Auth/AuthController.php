@@ -24,7 +24,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
     
     protected $redirectPath = '/erp';
-    protected $layout = "layouts.main";
+    protected $username = 'username';   // use username login. if email, remove this.
 
     /**
      * Create a new authentication controller instance.
@@ -61,6 +61,7 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
@@ -70,4 +71,5 @@ class AuthController extends Controller
 //         $this->layout->content = view('auth.register');
         return view('auth.register');
     }
+    
 }

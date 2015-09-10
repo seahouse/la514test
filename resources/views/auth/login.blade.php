@@ -18,9 +18,13 @@
             @endif
             <form method="POST" action="/auth/login">
                 {!! csrf_field() !!}
-                <div class="form-group">
+{{--                <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+                </div> --}}
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type=text name="username" value="{{ old('username') }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Password</label>

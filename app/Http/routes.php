@@ -59,12 +59,6 @@ Route::group(['prefix' => 'addr', 'namespace' => 'Addr', 'middleware' => 'auth']
     Route::resource('citys', 'CitysController');
 });
 
-Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
-    Route::resource('employees', 'EmployeesController');
-    Route::resource('depts', 'DeptsController');
-    Route::resource('images', 'ImagesController');
-});
-
 Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' => 'auth'], function() {
     Route::resource('warehouses', 'WarehousesController');
     Route::get('inventoryAvailability', 'InventoryAvailabilityController@listByItems');
@@ -89,6 +83,15 @@ Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' =>
     Route::resource('purchaseorders', 'PurchaseordersController');
     Route::get('poitems/{headId}/create', 'PoitemsController@createByPoheadId');
     Route::resource('poitems', 'PoitemsController');
+});
+
+Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
+    Route::resource('employees', 'EmployeesController');
+    Route::resource('depts', 'DeptsController');
+    Route::resource('images', 'ImagesController');
+    Route::resource('users', 'UsersController');
+    Route::resource('roles', 'RolesController');
+    Route::resource('authorities', 'AuthoritiesController');
 });
 
 // Authentication routes...

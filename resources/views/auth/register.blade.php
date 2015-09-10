@@ -7,6 +7,11 @@
                 <input type="text" name="name" value="{{ old('name') }}">
             </div>
             
+            <div class="col-md-6">
+                Username
+                <input type="text" name="username" class="form-control" value="">
+            </div>
+            
             <div>
                 Email
                 <input type="email" name="email" value="{{ old('email') }}">
