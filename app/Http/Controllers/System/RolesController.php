@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\System;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Role;
+use App\Http\Requests\System\RoleRequest;
+use Request;
 
 class RolesController extends Controller
 {
@@ -40,12 +42,19 @@ class RolesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         //
-        $input = Request::all();
-        Dept::create($input);
-        return redirect('system/depts');
+//         $input = Request::all();
+//         Role::create($input);
+
+        $role = new Role();
+        $role->name = $request->input('name');
+        $role->display_name = $request->input('display_name');
+        $role->description = $request->input('description');
+        $role->save();
+        
+        return redirect('system/roles');
     }
 
     /**
@@ -68,6 +77,8 @@ class RolesController extends Controller
     public function edit($id)
     {
         //
+        $role = Role::findOrFail($id);
+        return view('system.roles.edit', compact('role'));
     }
 
     /**
@@ -77,9 +88,15 @@ class RolesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
         //
+        $role = Role::findOrFail($id);
+        $role->name = $request->input('name');
+        $role->display_name = $request->input('display_name');
+        $role->description = $request->input('description');
+        $role->update();
+        return redirect('system/roles');
     }
 
     /**
@@ -91,5 +108,8 @@ class RolesController extends Controller
     public function destroy($id)
     {
         //
-    }
+        Role::destroy($id);
+        return redirect('system/roles');
+    }    
+
 }

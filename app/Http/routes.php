@@ -89,7 +89,12 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
     Route::resource('employees', 'EmployeesController');
     Route::resource('depts', 'DeptsController');
     Route::resource('images', 'ImagesController');
+    Route::get('users/{id}/editrole', 'UsersController@editrole');
+    Route::post('users/{id}/updaterole', 'UsersController@updaterole');
+    Route::get('users/{id}/roles', 'UserrolesController@index');
+    Route::get('users/{id}/roles/create', 'UserrolesController@create');
     Route::resource('users', 'UsersController');
+    Route::delete('userroles/destroy/{id}', 'UserrolesController@destory');
     Route::resource('roles', 'RolesController');
     Route::resource('authorities', 'AuthoritiesController');
 });

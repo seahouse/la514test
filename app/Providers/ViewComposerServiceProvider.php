@@ -98,6 +98,11 @@ class ViewComposerServiceProvider extends ServiceProvider
 //             $view->with('itemsiteList', DB::table('itemsites')->leftJoin('items', 'itemsites.item_id', '=', 'items.id')->select('item_number', 'itemsites.id')->lists('item_number', 'itemsites.id'));
 //             $view->with('itemsiteList', \App\Inventory\Itemsite::orderby('itemsites.id', 'asc')->lists('item_id', 'id'));
         });
+        
+            // roleList
+            view()->composer(array('system.users.editrole'), function($view) {
+                $view->with('roleList', \App\Role::orderby('id', 'asc')->lists('name', 'id'));
+            });
     }
 
     /**

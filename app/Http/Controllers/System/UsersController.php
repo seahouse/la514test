@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\System;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Http\Requests\System\UserRequest;
-use Request;
+// use Request;
 use App\Http\Requests\System\UpdateUserRequest;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -97,7 +98,9 @@ class UsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->name = $request->input('name');
+        $user->password = bcrypt($request->input('password'));
+        $user->update();
         return redirect('system/users');
     }
 
@@ -111,6 +114,23 @@ class UsersController extends Controller
     {
         //
         User::destroy($id);
+        return redirect('system/users');
+    }
+    
+    public function editrole($id)
+    {
+        $user = User::findOrFail($id);
+        return view('system.users.editrole', compact('user'));
+    }
+    
+    public function updaterole(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $role = Role::findOrFail($request->input('role_id'));
+        if ($role <> null)
+            if (!$user->hasRole($role->name))
+                $user->attachRole($role);
+        
         return redirect('system/users');
     }
 }

@@ -16,6 +16,7 @@
             <tr>
                 <th>用户名</th>
                 <th>姓名</th>
+                <th>角色</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -29,7 +30,12 @@
                         {{ $user->name }}
                     </td>
                     <td>
+                        <a href="{{ URL::to('/system/users/'.$user->id.'/roles') }}">明细</a>
+{{--                        @if (isset($user->role->display_name)) {{ $user->role->display_name }} @endif --}}
+                    </td>
+                    <td>
                         <a href="{{ URL::to('/system/users/'.$user->id.'/edit') }}" class="btn btn-success btn-sm pull-left">编辑</a>
+                        <a href="{{ URL::to('/system/users/'.$user->id.'/editrole') }}" class="btn btn-success btn-sm pull-left">编辑角色</a>
                         {!! Form::open(array('route' => array('system.users.destroy', $user->id), 'method' => 'delete', 'onsubmit' => 'return confirm("确定删除此记录?");')) !!}
                             {!! Form::submit('删除', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
