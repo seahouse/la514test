@@ -3,10 +3,9 @@
 @section('main')
     <div class="panel-heading">
         <a href="roles/create" class="btn btn-sm btn-success">新建</a>
-{{--       <div class="pull-right" style="padding-top: 4px;">
-            <a href="{{ URL::to('system/roles') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'角色管理', [], 'layouts'}}</a>
-            <a href="{{ URL::to('system/images') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'图片管理', [], 'layouts'}}</a> 
-        </div> --}}
+       <div class="pull-right" style="padding-top: 4px;">
+            <a href="{{ URL::to('system/permissions') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'权限管理', [], 'layouts'}}</a>
+        </div>
     </div> 
     
 
@@ -17,6 +16,7 @@
                 <th>名称</th>
                 <th>显示名称</th>
                 <th>描述</th>
+                <th>权限</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -31,6 +31,9 @@
                     </td>
                     <td>
                         {{ $role->description }}
+                    </td>
+                    <td>
+                        <a href="{{ URL::to('/system/roles/'.$role->id.'/permissions') }}">明细</a>
                     </td>
                     <td>
                         <a href="{{ URL::to('/system/roles/'.$role->id.'/edit') }}" class="btn btn-success btn-sm pull-left">编辑</a>

@@ -91,12 +91,16 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
     Route::resource('images', 'ImagesController');
     Route::get('users/{id}/editrole', 'UsersController@editrole');
     Route::post('users/{id}/updaterole', 'UsersController@updaterole');
-    Route::get('users/{id}/roles', 'UserrolesController@index');
-    Route::get('users/{id}/roles/create', 'UserrolesController@create');
+    Route::post('userroles/store', 'UserrolesController@store');
+    Route::get('users/{id}/roles/edit', 'UserrolesController@edit');
     Route::resource('users', 'UsersController');
-    Route::delete('userroles/destroy/{id}', 'UserrolesController@destory');
+    Route::group(['prefix' => 'users/{user}/roles'], function () {
+        Route::get('/', 'UserrolesController@index');
+        Route::get('create', 'UserrolesController@create');
+        Route::delete('destroy/{role}', 'UserrolesController@destroy');
+    });
     Route::resource('roles', 'RolesController');
-    Route::resource('authorities', 'AuthoritiesController');
+    Route::resource('permissions', 'PermissionsController');
 });
 
 // Authentication routes...
