@@ -1,22 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\System;
+namespace App\Http\Controllers\Sales;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Sales\Receivable;
+use App\Sales\Salesorder;
 
-class AuthoritiesController extends Controller
+class ReceivablesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index($soheadId)
     {
         //
+        $receivables = Receivable::where('sohead_id', $soheadId)->paginate(10);
+        return view('sales.receivables.index', compact('receivables'));
     }
 
     /**
@@ -24,9 +28,17 @@ class AuthoritiesController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($soheadId)
     {
         //
+        $salesorder = Salesorder::findOrFail($soheadId);
+//         $permissionIds = RolePermission::where('role_id', $roleId)->select('permission_id')->get();
+//         $permissionList = Permission::whereNotIn('id', $permissionIds)->select('id', DB::raw('concat(name, \' - \', display_name) as name'))->lists('name', 'id');
+//         if ($role != null)
+//             return view('system.rolepermissions.create', compact('role', 'permissionList'));
+//         else
+//             return '无此角色';
+        return view('sales.receivables.create', compact('salesorder'));
     }
 
     /**

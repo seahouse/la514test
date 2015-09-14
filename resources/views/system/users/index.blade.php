@@ -2,8 +2,10 @@
 
 @section('main')
     <div class="panel-heading">
-        <a href="users/create" class="btn btn-sm btn-success">新建</a>
-       <div class="pull-right" style="padding-top: 4px;">
+        @if (Auth::user()->can('system_user_maintain'))
+            <a href="users/create" class="btn btn-sm btn-success">新建</a>
+        @endif
+        <div class="pull-right" style="padding-top: 4px;">
             <a href="{{ URL::to('system/roles') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'角色管理', [], 'layouts'}}</a>
 {{--            <a href="{{ URL::to('system/images') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'图片管理', [], 'layouts'}}</a> --}}
         </div> 

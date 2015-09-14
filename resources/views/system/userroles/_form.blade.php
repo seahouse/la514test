@@ -10,7 +10,7 @@
 
 
 <div class="form-group">
-    {!! Form::label('role_id', '权限:') !!}
+    {!! Form::label('role_id', '角色:') !!}
     {!! Form::select('role_id', $roleList, null, ['class' => 'form-control']) !!}
 </div>
 

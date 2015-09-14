@@ -68,6 +68,10 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
     Route::get('salesorders/{id}/ship', 'SalesordersController@ship');
     Route::resource('salesorders', 'SalesordersController');
+    Route::group(['prefix' => 'salesorders/{salesorder}/receivables'], function () {
+        Route::get('/', 'ReceivablesController@index');
+        Route::get('create', 'ReceivablesController@create');
+    });
     Route::resource('salesreps', 'SalesrepsController');
     Route::resource('terms', 'TermsController');
     Route::get('soitems/{headId}/list', 'SoitemsController@listBySoheadId');
@@ -100,7 +104,13 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
         Route::delete('destroy/{role}', 'UserrolesController@destroy');
     });
     Route::resource('roles', 'RolesController');
-    Route::resource('permissions', 'PermissionsController');
+     Route::resource('permissions', 'PermissionsController');
+    Route::group(['prefix' => 'roles/{role}/permissions'], function() {
+        Route::get('/', 'RolepermissionsController@index');
+        Route::get('create', 'RolepermissionsController@create');
+        Route::delete('destroy/{permission}', 'RolepermissionsController@destroy');
+    });
+    Route::post('rolepermissions/store', 'RolepermissionsController@store');
 });
 
 // Authentication routes...

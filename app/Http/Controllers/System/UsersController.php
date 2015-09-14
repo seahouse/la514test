@@ -12,6 +12,8 @@ use App\Http\Requests\System\UserRequest;
 // use Request;
 use App\Http\Requests\System\UpdateUserRequest;
 use App\Role;
+use Zizaco\Entrust\Entrust;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -35,7 +37,10 @@ class UsersController extends Controller
     public function create()
     {
         //
-        return view('system.users.create');
+        if (Auth::user()->can('system_user_maintain'))
+            return view('system.users.create');
+        else 
+            return '无此操作权限';
     }
 
     /**

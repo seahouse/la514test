@@ -65,7 +65,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/system/employees">员工</a></li>
                                 <li><a href="/system/users">用户管理</a></li>
-                                <li><a href="/system/permissions">权限管理</a></li>
+{{--                                <li><a href="/system/permissions">权限管理</a></li> --}}
                             </ul>
                         </li>
                     </ul>
