@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Sales;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Sales\Receivable;
 use App\Sales\Salesorder;
+use App\Http\Requests\Sales\ReceivableRequest;
+use Request;
+use App\Sales\Soitem;
 
 class ReceivablesController extends Controller
 {
@@ -47,9 +50,25 @@ class ReceivablesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ReceivableRequest $request, $soheadId)
     {
         //
+        $salesorder = Salesorder::findOrFail($soheadId);
+        $soitems = $salesorder->soitems;
+        $priceTotal = 0.0;
+        foreach ($soitems as $soitem)
+            $priceTotal += $soitem->price * $soitem->qty;
+        
+        $priceReceived = Receivable::where('sohead_id', $soheadId)->sum('amount');
+        
+        if ($priceTotal <= $priceReceived)
+            return '已完成付款';
+        
+        $input = Request::all();
+        Receivable::create($input);
+        return redirect('sales/salesorders/' . $request->get('sohead_id') . '/receivables');  
+        
+
     }
 
     /**
@@ -92,8 +111,10 @@ class ReceivablesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($soheadId, $receivableId)
     {
         //
+        Receivable::destroy($receivableId);
+        return redirect('sales/salesorders/' . $soheadId . '/receivables');
     }
 }

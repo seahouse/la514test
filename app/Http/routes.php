@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('accounting');
+//     return view('accounting');
 //     return view('auth/login');
 //     return view('welcome');
+    return view('navbarerp');
 });
 Route::get('/home', function () {
     return view('navbar');
@@ -71,6 +72,8 @@ Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth
     Route::group(['prefix' => 'salesorders/{salesorder}/receivables'], function () {
         Route::get('/', 'ReceivablesController@index');
         Route::get('create', 'ReceivablesController@create');
+        Route::post('store', 'ReceivablesController@store');
+        Route::delete('destroy/{receivable}', 'ReceivablesController@destroy');
     });
     Route::resource('salesreps', 'SalesrepsController');
     Route::resource('terms', 'TermsController');
@@ -84,6 +87,12 @@ Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' =>
     Route::resource('vendtypes', 'VendtypesController');
     Route::get('purchaseorders/{id}/detail', 'PurchaseordersController@detail');
     Route::get('purchaseorders/{id}/receiving', 'PurchaseordersController@receiving');
+    Route::group(['prefix' => 'purchaseorders/{purchaseorder}/payments'], function () {
+        Route::get('/', 'PaymentsController@index');
+        Route::get('create', 'PaymentsController@create');
+        Route::post('store', 'PaymentsController@store');
+        Route::delete('destroy/{payment}', 'PaymentsController@destroy');
+    });
     Route::resource('purchaseorders', 'PurchaseordersController');
     Route::get('poitems/{headId}/create', 'PoitemsController@createByPoheadId');
     Route::resource('poitems', 'PoitemsController');
