@@ -98,6 +98,10 @@ Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' =>
     Route::resource('poitems', 'PoitemsController');
 });
 
+Route::group(['prefix' => 'accounting', 'namespace' => 'Accounting', 'middleware' => 'auth'], function() {
+    Route::resource('receivables', 'ReceivablesController');
+});
+
 Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
     Route::resource('employees', 'EmployeesController');
     Route::resource('depts', 'DeptsController');
