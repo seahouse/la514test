@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Carbon\Carbon;
 
-class CreateReceivablesTable extends Migration
+class CreateReceiptpaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReceivablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('receivables', function (Blueprint $table) {
+        Schema::create('receiptpayments', function (Blueprint $table) {
             $table->increments('id');
             
             $table->integer('sohead_id');
@@ -34,6 +34,6 @@ class CreateReceivablesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('receivables');
+        Schema::drop('receiptpayments');
     }
 }

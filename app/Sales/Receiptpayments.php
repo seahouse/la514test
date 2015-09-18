@@ -4,7 +4,7 @@ namespace App\Sales;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Receivable extends Model
+class Receiptpayments extends Model
 {
     //
     protected $fillable = [

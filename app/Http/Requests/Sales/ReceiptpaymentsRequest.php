@@ -4,7 +4,7 @@ namespace App\Http\Requests\Sales;
 
 use App\Http\Requests\Request;
 
-class ReceivableRequest extends Request
+class ReceiptpaymentsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -69,11 +69,11 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
     Route::get('salesorders/{id}/ship', 'SalesordersController@ship');
     Route::resource('salesorders', 'SalesordersController');
-    Route::group(['prefix' => 'salesorders/{salesorder}/receivables'], function () {
-        Route::get('/', 'ReceivablesController@index');
-        Route::get('create', 'ReceivablesController@create');
-        Route::post('store', 'ReceivablesController@store');
-        Route::delete('destroy/{receivable}', 'ReceivablesController@destroy');
+    Route::group(['prefix' => 'salesorders/{salesorder}/receiptpayments'], function () {
+        Route::get('/', 'ReceiptpaymentsController@index');
+        Route::get('create', 'ReceiptpaymentsController@create');
+        Route::post('store', 'ReceiptpaymentsController@store');
+        Route::delete('destroy/{receiptpayment}', 'ReceiptpaymentsController@destroy');
     });
     Route::resource('salesreps', 'SalesrepsController');
     Route::resource('terms', 'TermsController');

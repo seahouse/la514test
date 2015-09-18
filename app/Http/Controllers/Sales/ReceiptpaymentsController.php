@@ -6,13 +6,13 @@ namespace App\Http\Controllers\Sales;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Sales\Receivable;
+use App\Sales\Receiptpayments;
 use App\Sales\Salesorder;
-use App\Http\Requests\Sales\ReceivableRequest;
+use App\Http\Requests\Sales\ReceiptpaymentsRequest;
 use Request;
 use App\Sales\Soitem;
 
-class ReceivablesController extends Controller
+class ReceiptpaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class ReceivablesController extends Controller
     public function index($soheadId)
     {
         //
-        $receivables = Receivable::where('sohead_id', $soheadId)->paginate(10);
-        return view('sales.receivables.index', compact('receivables'));
+        $receiptpayments = Receiptpayments::where('sohead_id', $soheadId)->paginate(10);
+        return view('sales.receiptpayments.index', compact('receiptpayments'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ReceivablesController extends Controller
 //             return view('system.rolepermissions.create', compact('role', 'permissionList'));
 //         else
 //             return '无此角色';
-        return view('sales.receivables.create', compact('salesorder'));
+        return view('sales.receiptpayments.create', compact('salesorder'));
     }
 
     /**
@@ -50,7 +50,7 @@ class ReceivablesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ReceivableRequest $request, $soheadId)
+    public function store(ReceiptpaymentsRequest $request, $soheadId)
     {
         //
         $salesorder = Salesorder::findOrFail($soheadId);
@@ -59,14 +59,14 @@ class ReceivablesController extends Controller
         foreach ($soitems as $soitem)
             $priceTotal += $soitem->price * $soitem->qty;
         
-        $priceReceived = Receivable::where('sohead_id', $soheadId)->sum('amount');
+        $priceReceived = Receiptpayments::where('sohead_id', $soheadId)->sum('amount');
         
         if ($priceTotal <= $priceReceived)
             return '已完成付款';
         
         $input = Request::all();
-        Receivable::create($input);
-        return redirect('sales/salesorders/' . $request->get('sohead_id') . '/receivables');  
+        Receiptpayments::create($input);
+        return redirect('sales/salesorders/' . $request->get('sohead_id') . '/receiptpayments');  
         
 
     }
@@ -114,7 +114,7 @@ class ReceivablesController extends Controller
     public function destroy($soheadId, $receivableId)
     {
         //
-        Receivable::destroy($receivableId);
-        return redirect('sales/salesorders/' . $soheadId . '/receivables');
+        Receiptpayments::destroy($receivableId);
+        return redirect('sales/salesorders/' . $soheadId . '/receiptpayments');
     }
 }
