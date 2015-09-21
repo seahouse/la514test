@@ -5,7 +5,7 @@
     <hr/>
     
     {!! Form::open(['url' => 'sales/salesorders']) !!}
-        @include('sales.salesorders._form', ['submitButtonText' => '添加'])
+        @include('sales.salesorders._form', ['submitButtonText' => '添加', 'orderdate' => date('Y-m-d')])
     {!! Form::close() !!}   
 
 

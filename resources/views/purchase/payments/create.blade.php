@@ -8,7 +8,6 @@
         @include('purchase.payments._form', ['submitButtonText' => '添加', 'amount' => '0.0', 'paydate' => date('Y-m-d')])
     {!! Form::close() !!}
 
-
     
     @include('errors.list')
 @stop

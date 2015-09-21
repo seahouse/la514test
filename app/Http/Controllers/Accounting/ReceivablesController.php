@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Accounting\Receivable;
+use App\Custinfo;
+use DB;
+use App\Sales\Soitem;
 
 class ReceivablesController extends Controller
 {
@@ -18,8 +21,16 @@ class ReceivablesController extends Controller
     public function index()
     {
         //
-        $receivables = Receivable::latest('created_at')->paginate(10);
-        return view('accounting.receivables.index', compact('receivables'));
+//         $soitems = Soitem::latest('created_at')->get();
+//         return DB::table('soitems')->selectRaw('SUM(qty * price) as total')->pluck('total');
+        
+//         $receivables = Custinfo::latest('created_at')->paginate(10);
+//         $receivable->soitems->selectRaw('SUM(qty * price) as total')->pluck('total')
+        
+        $receivable = Custinfo::latest('created_at')->first();
+//         return $receivable;
+        return $receivable->soitems->every(0, 1);
+//         return view('accounting.receivables.index', compact('receivables'));
     }
 
     /**

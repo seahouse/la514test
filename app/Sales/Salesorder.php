@@ -25,15 +25,15 @@ class Salesorder extends Model
     }
     
     public function warehouse() {
-        return $this->hasOne('App\Inventory\Warehouse', 'id');
+        return $this->hasOne('App\Inventory\Warehouse', 'id', 'warehouse_id');
     }
     
     public function salesrep() {
-        return $this->hasOne('App\Sales\Salesrep', 'id');
+        return $this->hasOne('App\Sales\Salesrep', 'id', 'salesrep_id');
     }
     
     public function term() {
-        return $this->hasOne('App\Sales\Term', 'id');
+        return $this->hasOne('App\Sales\Term', 'id', 'term_id');
     }
     
     public function soitems() {
