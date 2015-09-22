@@ -10,36 +10,35 @@
     </div>
     
 
-    @if ($receivables->count())
+    @if ($payables->count())
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>客户</th>
+                <th>供应商</th>
                 <th>订单总金额</th>
-                <th>累计已收</th>
-                <th>应收余额</th>
+                <th>累计已付</th>
+                <th>应付余额</th>
 {{--                <th>操作</th> --}}
             </tr>
         </thead>
         <tbody>
-            @foreach($receivables as $receivable)
+            @foreach($payables as $payable)
                 <tr>
                     <td>
-                        {{ $receivable->name }}
+                        {{ $payable->number }}
                     </td>
                     <td>
-                        {{ $receivable->soitems->sum(function ($item) {
-                            return $item['qty'] * $item['price'];
+                        {{ $payable->poitems->sum(function ($item) {
+                            return $item['qty_ordered'] * $item['unitprice'];
                         }) }}
-{{--                        {!! URL::to('/accounting/receivables/getSoTotalPriceByCustinfo/' . $receivable->id) !!} --}}
                     </td>
                     <td>
-                        {{ $receivable->receiptpayments->sum('amount') }}
+                         {{ $payable->payments->sum('amount') }}
                     </td>
                     <td>
-                        {{ $receivable->soitems->sum(function ($item) {
-                            return $item['qty'] * $item['price'];
-                        }) - $receivable->receiptpayments->sum('amount') }}
+                        {{ $payable->poitems->sum(function ($item) {
+                            return $item['qty_ordered'] * $item['unitprice'];
+                        }) - $payable->payments->sum('amount') }}
                     </td>
 {{--                    <td>
                         <a href="{{ URL::to('/system/userroles/'.$userrole->id.'/edit') }}" class="btn btn-success btn-sm pull-left">编辑</a> 
@@ -52,7 +51,7 @@
         </tbody>
 
     </table>
-    {!! $receivables->render() !!}
+    {!! $payables->render() !!}
     @else
     <div class="alert alert-warning alert-block">
         <i class="fa fa-warning"></i>

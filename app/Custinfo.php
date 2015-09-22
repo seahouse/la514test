@@ -26,6 +26,10 @@ class Custinfo extends Model
         return $this->hasManyThrough('App\Sales\Soitem', 'App\Sales\Salesorder', 'custinfo_id', 'sohead_id');
     }
     
+    public function receiptpayments() {
+        return $this->hasManyThrough('App\Sales\Receiptpayments', 'App\Sales\Salesorder', 'custinfo_id', 'sohead_id');
+    }
+    
     public function sototalprice() {
         return '0.0';
     }

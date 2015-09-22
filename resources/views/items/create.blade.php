@@ -1,7 +1,7 @@
 @extends('navbarerp')
 
 @section('main')
-    <h1>添加物料</h1>
+    <h2>物料 -- 添加物料</h2>
     <hr/>
     
     {!! Form::open(['url' => '/items']) !!}

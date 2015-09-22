@@ -20,4 +20,12 @@ class Vendinfo extends Model
         'contact2_id',
         'addr_id',
     ];
+    
+    public function poitems() {
+        return $this->hasManyThrough('App\Purchase\Poitem', 'App\Purchase\Purchaseorder', 'vendinfo_id', 'pohead_id');
+    }
+    
+    public function payments() {
+        return $this->hasManyThrough('App\Purchase\Payment', 'App\Purchase\Purchaseorder', 'vendinfo_id', 'pohead_id');
+    }
 }

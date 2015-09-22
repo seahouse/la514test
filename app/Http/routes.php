@@ -33,12 +33,6 @@ Route::get('/erp', function() {
     return view('navbarerp');
 });
 
-// Route::resource('itemclasses', 'ItemclassesController');
-// Route::resource('items', 'ItemsController');
-// Route::resource('accountingorder1s', 'Accountingorder1sController');
-// Route::resource('boms', 'BomsController');
-// Route::get('bomitems/{id}/createitem', 'BomitemsController@createitem');
-// Route::resource('bomitems', 'BomitemsController');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('itemclasses', 'ItemclassesController');
@@ -100,6 +94,7 @@ Route::group(['prefix' => 'purchase', 'namespace' => 'Purchase', 'middleware' =>
 
 Route::group(['prefix' => 'accounting', 'namespace' => 'Accounting', 'middleware' => 'auth'], function() {
     Route::resource('receivables', 'ReceivablesController');
+    Route::resource('payables', 'PayablesController');
 });
 
 Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'auth'], function() {
