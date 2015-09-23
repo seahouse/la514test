@@ -1,5 +1,7 @@
 @extends('navbarerp')
 
+@section('title', '物料')
+
 @section('main')
     <div class="panel-heading">
 <!--        <div class="pull-right" style="padding-top: 4px;"> -->
@@ -31,7 +33,6 @@
                         <a href="{{ url('/items', $item->id) }}">{{ $item->item_number }}</a>
                     </td>
                     <td>
-<!--                         {{ $item->market_price }} -->
                         {{ $item->itemclass->name }}
                     </td>
                     <td>
@@ -67,25 +68,6 @@
         <i class="fa fa-warning"></i>
         {{'无记录', [], 'layouts'}}
     </div>
-    @endif
-    
-<!--     <nav> -->
-<!--         <ul class="pagination"> -->
-<!--             <li> -->
-<!--                 <a href="#" aria-label="Previous"> -->
-<!--                     <span aria-hidden="true">&laquo;</span> -->
-<!--                 </a>                 -->
-<!--             </li> -->
-<!--             <li><a href="#">1</a></li> -->
-<!--             <li><a href="#">2</a></li> -->
-<!--             <li><a href="#">3</a></li> -->
-<!--             <li><a href="#">4</a></li> -->
-<!--             <li><a href="#">5</a></li> -->
-<!--             <li> -->
-<!--                 <a href="#" aria-label="Next"> -->
-<!--                     <span aria-hidden="true">&raquo;</span> -->
-<!--                 </a> -->
-<!--             </li> -->
-<!--         </ul> -->
-<!--     </nav> -->
-@stop
+    @endif    
+
+@endsection
