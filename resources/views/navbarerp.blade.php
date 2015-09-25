@@ -91,7 +91,6 @@
         
         <div class="panel panel-default">
                 @yield('main')
-            </div>
         </div>        
     </div>
     

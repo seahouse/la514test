@@ -7,10 +7,26 @@
 <!--        <div class="pull-right" style="padding-top: 4px;"> -->
 <!--             <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'新建', [], 'layouts'}}</a> -->
 <!--         </div> -->
+        <h3> {{ ('产品 -- 物料') }} </h3>
+    </div>
+    
+    <div class="panel-body">
         <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success">新建</a>
-<!--         <h2> -->
-<!--             {{ ('物料') }} -->
-<!--         </h2> -->
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group input-group-sm">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default btn-sm">Submit</button>
+        </form>
+{{--        <div class="pull-right" style="padding-top: 4px; width: 500px">
+            {!! Form::open(['url' => '/items/search']) !!}   
+                <div class="form-group  input-group-sm">
+                    {!! Form::text('key', null, ['class' => 'form-control', 'placeholder' => 'Search']) !!}
+                </div>      
+                <button type="submit" class="btn btn-success btn-sm">Submit</button>         
+                <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'搜索', [], 'layouts'}}</a> 
+            {!! Form::close() !!}
+        </div> --}}
     </div>
     
     @if ($items->count())
@@ -23,7 +39,7 @@
                 <th>物料类型</th>
                 <th>创建日期</th>
                 <th>BOM</th>
-                <th>操作</th>
+                <th style="width: 120px">操作</th>
             </tr>
         </thead>
         <tbody>
