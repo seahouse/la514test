@@ -36,6 +36,7 @@ Route::get('/erp', function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('itemclasses', 'ItemclassesController');
+    Route::post('items/search', 'ItemsController@search');
     Route::resource('items', 'ItemsController');
     Route::resource('accountingorder1s', 'Accountingorder1sController');
     Route::resource('boms', 'BomsController');

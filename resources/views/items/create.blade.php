@@ -5,7 +5,7 @@
     <hr/>
     
     {!! Form::open(['url' => '/items']) !!}
-        @include('items._form', ['submitButtonText' => '添加'])
+        @include('items._form', ['submitButtonText' => '添加', 'marketprice' => '0.0'])
     {!! Form::close() !!}
     
     @include('errors.list')

@@ -5,7 +5,7 @@
     <hr/>
     
     {!! Form::model($item, ['method' => 'PATCH', 'action' => ['ItemsController@update', $item->id]]) !!}
-        @include('items._form', ['submitButtonText' => '保存'])
+        @include('items._form', ['submitButtonText' => '保存', 'marketprice' => $item->marketprice])
     {!! Form::close() !!}
     
     @include('errors.list')

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Item;
-//use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
+//use Request;
 use App\Http\Requests\ItemRequest;
 use DB;
 
@@ -29,6 +29,16 @@ class ItemsController extends Controller
         $items = Item::latest('created_at')->with('itemclass')->with('itemtype')->paginate(10);
 //         $itemclass = Item::find($id)->itemclass;
 //         $items = Item::paginate(5);
+        return view('items.index', compact('items'));
+    }
+    
+    public function search(Request $request)
+    {
+        $key = $request->input('key');
+        if ($key == '')
+            return redirect('items');
+        
+        $items = Item::latest('created_at')->where('item_number', 'like', '%' . $key . '%')->orWhere('item_name', 'like', '%' . $key . '%')->paginate(10);
         return view('items.index', compact('items'));
     }
 
@@ -57,7 +67,7 @@ class ItemsController extends Controller
     public function store(ItemRequest $request)
     {
         //
-        $input = Request::all();
+        $input = $request->all();
         $item = Item::create($input);
 
         $warehouse = Warehouse::first();
@@ -143,7 +153,12 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 通过删除itemsite，同时删除了item
+        $item = Item::findOrFail($id);
+        $itemsite = $item->itemsite;
+        if ($itemsite != null)
+            Itemsite::destroy($itemsite->id);
+        
         Item::destroy($id);
         return redirect('items');
     }

@@ -21,7 +21,7 @@ class CreateItemsitesTable extends Migration
             
             $table->timestamps();
             
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
             
             $table->index('item_id');

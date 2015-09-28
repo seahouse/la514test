@@ -25,7 +25,7 @@
 
 <div class="form-group">
     {!! Form::label('marketprice', '价格:') !!}
-    {!! Form::text('marketprice', '0.0', ['class' => 'form-control']) !!}
+    {!! Form::text('marketprice', $marketprice, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

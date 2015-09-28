@@ -12,12 +12,32 @@
     
     <div class="panel-body">
         <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success">新建</a>
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Search">
+        <form class="pull-right" action="/items/search" method="post">
+            {!! csrf_field() !!}
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default btn-sm">查找</button>
             </div>
-            <button type="submit" class="btn btn-default btn-sm">Submit</button>
+            <div class="pull-right input-group-sm">
+                <input type="text" class="form-control" name="key" placeholder="Search">    
+            </div>
         </form>
+        
+{{--        <form class="pull-right" role="search" action="/items/search" method="post">
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default btn-sm">查找</button>
+            </div>
+            <div class="pull-right input-group-sm">
+                <input type="text" class="form-control" name="key" placeholder="Search">    
+            </div>
+        </form> --}}
+
+        </div>
+{{--        <form class="media-right" role="search">
+            <div class="input-group-sm">
+                <input type="text" class="form-control" placeholder="Search">    
+                <button type="submit" class="btn btn-default btn-sm">查找</button>
+            </div>
+        </form> --}}
 {{--        <div class="pull-right" style="padding-top: 4px; width: 500px">
             {!! Form::open(['url' => '/items/search']) !!}   
                 <div class="form-group  input-group-sm">
