@@ -89,7 +89,7 @@
             </div>
         </nav>
         
-        <div class="panel panel-default">
+        <div class="panel panel-info">
                 @yield('main')
         </div>        
     </div>

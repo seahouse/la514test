@@ -28,6 +28,17 @@ class SalesOrdersController extends Controller
         $salesorders = Salesorder::latest('created_at')->paginate(10);
         return view('sales.salesorders.index', compact('salesorders'));
     }
+    
+    public function search(\Illuminate\Http\Request $request)
+    {
+        $key = $request->input('key');
+        if ($key == '')
+            return redirect('sales/salesorders');
+    
+        $salesorders = Salesorder::latest('created_at')->where('number', 'like', '%' . $key . '%')->paginate(10);
+//         $salesorders = Salesorder::latest('created_at')->where('number', 'like', '%' . $key . '%')->orWhere('item_name', 'like', '%' . $key . '%')->paginate(10);
+        return view('sales.salesorders.index', compact('salesorders'));
+    }
 
     /**
      * Show the form for creating a new resource.

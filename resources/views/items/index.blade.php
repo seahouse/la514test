@@ -7,7 +7,7 @@
 <!--        <div class="pull-right" style="padding-top: 4px;"> -->
 <!--             <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'新建', [], 'layouts'}}</a> -->
 <!--         </div> -->
-        <h3> {{ ('产品 -- 物料') }} </h3>
+        <h3 class="panel-title"> {{ ('产品 -- 物料') }} </h3>
     </div>
     
     <div class="panel-body">
@@ -47,7 +47,6 @@
                 <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'搜索', [], 'layouts'}}</a> 
             {!! Form::close() !!}
         </div> --}}
-    </div>
     
     @if ($items->count())
     <table class="table table-striped table-hover table-condensed">

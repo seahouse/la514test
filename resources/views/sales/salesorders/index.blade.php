@@ -1,14 +1,30 @@
 @extends('navbarerp')
 
+@section('title', '销售订单')
+
 @section('main')
     <div class="panel-heading">
-        <a href="salesorders/create" class="btn btn-sm btn-success">新建</a>
-       <div class="pull-right" style="padding-top: 4px;">
-            <a href="{{ URL::to('sales/salesreps') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'销售代表管理', [], 'layouts'}}</a>
-            <a href="{{ URL::to('sales/terms') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'付款条款管理', [], 'layouts'}}</a>
+        <div class="panel-title">销售 -- 销售订单
+            <div class="pull-right">
+                <a href="{{ URL::to('sales/salesreps') }}" class="btn btn-sm btn-success">{{'销售代表管理'}}</a>
+                <a href="{{ URL::to('sales/terms') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'付款条款管理', [], 'layouts'}}</a>
+            </div>
         </div>
     </div>
     
+    <div class="panel-body">
+        <a href="{{ URL::to('salesorders/create') }}" class="btn btn-sm btn-success">新建</a>        
+        <form class="pull-right" action="/sales/salesorders/search" method="post">
+            {!! csrf_field() !!}
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default btn-sm">查找</button>
+            </div>
+            <div class="pull-right input-group-sm">
+                <input type="text" class="form-control" name="key" placeholder="Search">    
+            </div>
+        </form>
+        
+    </div>
 
     @if ($salesorders->count())
     <table class="table table-striped table-hover table-condensed">
