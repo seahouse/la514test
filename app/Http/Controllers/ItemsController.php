@@ -32,6 +32,15 @@ class ItemsController extends Controller
         return view('items.index', compact('items'));
     }
     
+    /**
+     * 
+     */
+    public function mindex()
+    {
+        $items = Item::latest('created_at')->paginate(10);
+        return $items;
+    }
+    
     public function search(Request $request)
     {
         $key = $request->input('key');

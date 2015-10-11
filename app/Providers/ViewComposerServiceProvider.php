@@ -21,7 +21,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         
         // itemclassList
         view()->composer(array('items.create', 'items.edit'), function($view) {
-            $view->with('itemclassList', \App\ItemClass::orderby('id', 'asc')->lists('name', 'id'));
+            $view->with('itemclassList', \App\Itemclass::orderby('id', 'asc')->lists('name', 'id'));
         });
         
         // itemtypeList

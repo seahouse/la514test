@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ItemClass;
+use App\Itemclass;
 use App\Http\Requests\ItemclassRequest;
 use Request;
 //use Illuminate\Http\Request;
