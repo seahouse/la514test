@@ -129,6 +129,7 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'middleware' => 'au
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::post('auth/mlogin', 'Auth\AuthController@mpostLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
