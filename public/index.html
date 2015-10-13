@@ -64,7 +64,12 @@
             <div data-role="content">
             	<p>CFHour is the number #1 CodeFusion podcast.</p>
                 <p>Select a show to listen to:</p>
-                <ul id="showList" data-role="listview" data-inset="true"></ul>
+                <ul id="showList" data-role="listview" data-inset="true">
+                	<div id="listItem"></div>
+                </ul>
+                <!--<button data-inline="true" id="prevPage">上一页</button> -->
+                <a href="#" data-role="button" data-inline="true" id="prevPage" onClick="prevPage()">上一页</a>
+                <a href="#" data-role="button" data-inline="true" id="nextPage" onClick="nextPage()">下一页</a>
             </div>
             <div data-role="footer">
             	<h4>&copy; cfhour.com</h4>
@@ -116,8 +121,8 @@
 						alert($("form#loginform").serialize());
 						$.ajax({
 							type:"POST",
-							url:"http://sea2730.6655.la:1234/auth/mlogin",
-							// url:"http://localhost:8000/auth/mlogin",
+							// url:"http://sea2730.6655.la:1234/auth/mlogin",
+							url:"http://localhost:8000/auth/mlogin",
 							data:$("form#loginform").serialize(),
 							// data: {
 								// username: $("form#username").val(),
@@ -133,7 +138,8 @@
 							success: function(msg) {
 								if (msg == 'success')
 								{
-									$.mobile.changePage($("#home"));
+									// this.href = $("#home");
+									$.mobile.changePage($("#home"), {reloadPage: true});
 								}
 								else
 								{
@@ -158,32 +164,43 @@
 		</script>
         
         <script type="text/javascript">
-        	$("#home").bind("pagecreate", function(e) {
-				alert('pagecreate');
-				getRemoteFeed();
+			var prevUrl = '';
+			var nextUrl = '';
+        	$("#home").bind("pagebeforeshow", function(e) {
+				getRemoteFeed("http://localhost:8000/items/mindex");
 			})
 			
-			var getRemoteFeed = function() {
-				$.get("http://feeds2.feedburner.com/CfhourColdfusionPodcast", {}, 
+			var getRemoteFeed = function(dataUrl) {
+				$.getJSON(dataUrl, 
 					function(data) {
 						var listItem = '';
-						$(data).find('item').each(function() {
-							var strXML = XMLtoString($(this));
-							var showDescription = strXML.substring(strXML.indexOf('<itunes:subtitle>') + 17, 
-								strXML.indexOf('</itunes:subtitle>'));
-							listItem += '<li data-show-description="'
-								+ showDescription + '" data-show-title="'
-								+ $(this).find('title').text()
-								+ '" data-enclosure="'
-								+ $(this).find("enclosure").attr("url")
-								+ '" id="' + $(this).find("guid")
-								+ '"><h3><a>'
-								+ $(this).find('title').text()
-								+ '</a></h3><p>Released: '
-								+ $(this).find('pubDate').text() + '</p></li>';							
+						$.each(data.data, function(i, field){
+							listItem += '<li>'
+								+ field.item_name 
+								+ '</li>';
 						});
+						// alert(listItem);
+						$("#listItem").html(listItem);
+						prevUrl = data.prev_page_url;
+						nextUrl = data.next_page_url;
+						if (prevUrl == null)
+							$("#prevPage").hide();
+						else
+							$("#prevPage").show();
+						if (nextUrl == null)
+							$("#nextPage").hide();
+						else
+							$("#nextPage").show();
 					});
 			};
+			
+			function nextPage() {
+				getRemoteFeed(nextUrl);
+			}
+			
+			function prevPage() {
+				getRemoteFeed(prevUrl);
+			}
         </script>
     </body>
 </html>
