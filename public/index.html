@@ -51,6 +51,7 @@
                     <input type="password" name="password" id="password" value="密码" /><br>
                     
                     <a data-role="button" id="submit">登录</a>
+                    <a data-role="button" id="quit">退出</a>
                 </form>
             </div>
         </section>
@@ -110,6 +111,38 @@
 		<script src="js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
+			document.addEventListener("backbutton", onBackKeyDown, false);
+			
+			function onBackKeyDown() {
+				if ($.mobile.activePage.is('#page1')) {
+					$.ajax({
+						type:"GET",
+						url:"http://sea2730.6655.la:1234/auth/logout",
+						// url:"http://localhost:8000/auth/mlogout",
+						error: function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(xhr.responseText);
+							alert(ajaxOptions);
+							alert(thrownError);
+						},
+						success: function(msg) {
+							if (msg == 'success')
+							{
+								navigator.app.exitApp();
+							}
+							else
+							{
+								alert('mlogout error');
+							}
+						},
+					});
+				}
+				else
+					navigator.app.backHistory();
+			}
+		</script>
+        
+        <script type="text/javascript">
 			jQuery(document).ready(function(e) {
                 // $("input[id]").bind("focus", function() {
 					// if ($(this).attr("id") == 'username' || $(this).attr("id") == 'password')
@@ -121,8 +154,8 @@
 						alert($("form#loginform").serialize());
 						$.ajax({
 							type:"POST",
-							// url:"http://sea2730.6655.la:1234/auth/mlogin",
-							url:"http://localhost:8000/auth/mlogin",
+							url:"http://sea2730.6655.la:1234/auth/mlogin",
+							// url:"http://localhost:8000/auth/mlogin",
 							data:$("form#loginform").serialize(),
 							// data: {
 								// username: $("form#username").val(),
@@ -150,6 +183,32 @@
 						});
 					}
 				});
+				
+				$("#quit").bind("click", function() {
+					$.ajax({
+						type:"GET",
+						url:"http://sea2730.6655.la:1234/auth/logout",
+						// url:"http://localhost:8000/auth/mlogout",
+						error: function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(xhr.responseText);
+							alert(ajaxOptions);
+							alert(thrownError);
+						},
+						success: function(msg) {
+							if (msg == 'success')
+							{
+								alert(msg);
+								// $.mobile.changePage($("#home"), {reloadPage: true});
+							}
+							else
+							{
+								alert('error');
+								// $.mobile.changePage("xxxx2222");
+							}
+						},
+					});
+				});
             });
 			
 			function valid() {
@@ -167,10 +226,12 @@
 			var prevUrl = '';
 			var nextUrl = '';
         	$("#home").bind("pagebeforeshow", function(e) {
-				getRemoteFeed("http://localhost:8000/items/mindex");
+				getRemoteFeed("http://sea2730.6655.la:1234/items/mindex");
+				// getRemoteFeed("http://localhost:8000/items/mindex");
 			})
 			
 			var getRemoteFeed = function(dataUrl) {
+				alert('pagebeforeshow');
 				$.getJSON(dataUrl, 
 					function(data) {
 						var listItem = '';
