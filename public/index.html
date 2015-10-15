@@ -59,8 +59,24 @@
     
     	<div data-role="page" id="home">
         	<div data-role="header">
-            	<h1>CFHour Mobile</h1>
-                <a href="#about" data-role="button" data-icon="info">About</a>
+            	<h1>XXX</h1>
+                <a href="#popupNested" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">菜单</a>
+                <div data-role="popup" id="popupNested" data-theme="none">
+                	<div data-role="collapsible-set" >
+                    	<div data-role="collapsible" data-inset="false">
+                        	<h2>产品</h2>
+                            <ul data-role="listview">
+                            	<li><a href="#">物料</a></li>
+                            </ul>
+                        </div>
+                        <div data-role="collapsible" data-inset="false">
+                            <h2>销售</h2>
+                            <ul data-role="listview">
+                            	<li><a href="#">订单</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div data-role="content">
                 <ul id="showList" data-role="listview" data-inset="true">
@@ -94,6 +110,13 @@
             	<h4>&copy; cfhour.com</h4>
             </div>
         </div> -->
+        
+        <div data-role="popup" id="menu">
+        	<ul>
+            	<li>abc</li>
+                <li>ccc</li>
+            </ul>
+        </div>
     
 <!--    	<div>
         	<h1>Hello, world</h1>
@@ -119,8 +142,8 @@
 					alert('onBackKeyDown');
 					$.ajax({
 						type:"GET",
-						url:"http://sea2730.6655.la:1234/auth/logout",
-						// url:"http://localhost:8000/auth/mlogout",
+						// url:"http://sea2730.6655.la:1234/auth/logout",
+						url:"http://localhost:8000/auth/mlogout",
 						error: function(xhr, ajaxOptions, thrownError) {
 							alert(xhr.status);
 							alert(xhr.responseText);
@@ -157,8 +180,8 @@
 						alert($("form#loginform").serialize());
 						$.ajax({
 							type:"POST",
-							url:"http://sea2730.6655.la:1234/auth/mlogin",
-							// url:"http://localhost:8000/auth/mlogin",
+							// url:"http://sea2730.6655.la:1234/auth/mlogin",
+							url:"http://localhost:8000/auth/mlogin",
 							data:$("form#loginform").serialize(),
 							// data: {
 								// username: $("form#username").val(),
@@ -190,8 +213,8 @@
 				$("#quit").bind("click", function() {
 					$.ajax({
 						type:"GET",
-						url:"http://sea2730.6655.la:1234/auth/logout",
-						// url:"http://localhost:8000/auth/mlogout",
+						// url:"http://sea2730.6655.la:1234/auth/logout",
+						url:"http://localhost:8000/auth/mlogout",
 						error: function(xhr, ajaxOptions, thrownError) {
 							alert(xhr.status);
 							alert(xhr.responseText);
@@ -229,8 +252,8 @@
 			var prevUrl = '';
 			var nextUrl = '';
         	$("#home").bind("pagebeforeshow", function(e) {
-				getRemoteFeed("http://sea2730.6655.la:1234/items/mindex");
-				// getRemoteFeed("http://localhost:8000/items/mindex");
+				// getRemoteFeed("http://sea2730.6655.la:1234/items/mindex");
+				getRemoteFeed("http://localhost:8000/items/mindex");
 			})
 			
 			var getRemoteFeed = function(dataUrl) {
