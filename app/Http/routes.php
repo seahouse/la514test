@@ -67,6 +67,9 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
     Route::get('salesorders/{id}/ship', 'SalesordersController@ship');
     Route::post('salesorders/search', 'SalesordersController@search');
+    Route::group(['prefix' => 'salesorders'], function() {
+        Route::get('mindex', 'SalesordersController@mindex');
+    });
     Route::resource('salesorders', 'SalesordersController');
     Route::group(['prefix' => 'salesorders/{salesorder}/receiptpayments'], function () {
         Route::get('/', 'ReceiptpaymentsController@index');

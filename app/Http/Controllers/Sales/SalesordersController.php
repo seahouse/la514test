@@ -29,6 +29,12 @@ class SalesOrdersController extends Controller
         return view('sales.salesorders.index', compact('salesorders'));
     }
     
+    public function mindex()
+    {
+        $salesorders = Salesorder::latest('created_at')->paginate(10);
+        return $salesorders;
+    }
+    
     public function search(\Illuminate\Http\Request $request)
     {
         $key = $request->input('key');

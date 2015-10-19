@@ -66,13 +66,13 @@
                     	<div data-role="collapsible" data-inset="false">
                         	<h2>产品</h2>
                             <ul data-role="listview">
-                            	<li><a href="#">物料</a></li>
+                            	<li><a href="#pageItems">物料</a></li>
                             </ul>
                         </div>
                         <div data-role="collapsible" data-inset="false">
                             <h2>销售</h2>
                             <ul data-role="listview">
-                            	<li><a href="#">订单</a></li>
+                            	<li><a href="#pageSalesorders">订单</a></li>
                             </ul>
                         </div>
                     </div>
@@ -111,11 +111,41 @@
             </div>
         </div> -->
         
-        <div data-role="popup" id="menu">
-        	<ul>
-            	<li>abc</li>
-                <li>ccc</li>
-            </ul>
+        <div data-role="page" id="pageItems">
+        	<div data-role="header">
+            	<h1>XXX</h1>
+            </div>
+            <div data-role="content">
+                <ul id="showItemList" data-role="listview" data-inset="true">
+                	<div id="listItem"></div>
+                    <li>123</li>
+                    <li>456</li>
+                </ul>
+                <!--<button data-inline="true" id="prevPage">上一页</button> -->
+                <a href="#" data-role="button" data-inline="true" id="prevPageItem" onClick="prevPageItem()">上一页</a>
+                <a href="#" data-role="button" data-inline="true" id="nextPageItem" onClick="nextPageItem()">下一页</a>
+            </div>
+            <div data-role="footer">
+            	<h4>&copy; cfhour.com</h4>
+            </div>
+        </div>
+        
+        <div data-role="page" id="pageSalesorders">
+        	<div data-role="header">
+            	<h1>XXX</h1>
+            </div>
+            <div data-role="content">
+                <ul id="showSalesorderList" data-role="listview" data-inset="true">
+                    <li>123</li>
+                    <li>456</li>
+                </ul>
+                <!--<button data-inline="true" id="prevPage">上一页</button> -->
+                <a href="#" data-role="button" data-inline="true" id="prevPageSalesorder" onClick="prevPageSalesorder()">上一页</a>
+                <a href="#" data-role="button" data-inline="true" id="nextPageSalesorder" onClick="nextPageSalesorder()">下一页</a>
+            </div>
+            <div data-role="footer">
+            	<h4>&copy; cfhour.com</h4>
+            </div>
         </div>
     
 <!--    	<div>
@@ -287,6 +317,96 @@
 			
 			function prevPage() {
 				getRemoteFeed(prevUrl);
+			}
+        </script>
+        
+        <!--物料页面 -->
+        <script type="text/javascript">
+			var prevUrlItem = '';
+			var nextUrlItem = '';
+			var pageItems = {
+				getItems: function(dataUrl) {
+					$.getJSON(dataUrl, 
+						function(data) {
+							var listItem = '';
+							$.each(data.data, function(i, field){
+								listItem += '<li>'
+									+ field.item_name 
+									+ '</li>';
+							});
+							$("#showItemList").html(listItem);
+							$("#showItemList").listview("refresh");
+							prevUrlItem = data.prev_page_url;
+							nextUrlItem = data.next_page_url;
+							if (prevUrlItem == null)
+								$("#prevPageItem").hide();
+							else
+								$("#prevPageItem").show();
+							if (nextUrlItem == null)
+								$("#nextPageItem").hide();
+							else
+								$("#nextPageItem").show();
+						});
+				},
+			};
+        	$("#pageItems").bind("pagebeforeshow", function(e) {
+				// getRemoteFeed("http://sea2730.6655.la:1234/items/mindex");
+				// getItems("http://localhost:8000/items/mindex");
+				pageItems.getItems("http://localhost:8000/items/mindex");
+			})
+			
+			
+			function nextPageItem() {
+				pageItems.getItems(nextUrlItem);
+			}
+			
+			function prevPageItem() {
+				pageItems.getItems(prevUrlItem);
+			}
+        </script>
+        
+        <!--销售订单页面 -->
+        <script type="text/javascript">
+			var prevUrlSalesorder = '';
+			var nextUrlSalesorder = '';
+			var pageSalesorders = {
+				getSalesorders: function(dataUrl) {
+					$.getJSON(dataUrl, 
+						function(data) {
+							var listItem = '';
+							$.each(data.data, function(i, field){
+								listItem += '<li>'
+									+ field.number 
+									+ '</li>';
+							});
+							$("#showSalesorderList").html(listItem);
+							$("#showSalesorderList").listview("refresh");
+							prevUrlSalesorder = data.prev_page_url;
+							nextUrlSalesorder = data.next_page_url;
+							if (prevUrlSalesorder == null)
+								$("#prevPageSalesorder").hide();
+							else
+								$("#prevPageSalesorder").show();
+							if (nextUrlSalesorder == null)
+								$("#nextPageSalesorder").hide();
+							else
+								$("#nextPageSalesorder").show();
+						});
+				},
+			};
+        	$("#pageSalesorders").bind("pagebeforeshow", function(e) {
+				// getRemoteFeed("http://sea2730.6655.la:1234/items/mindex");
+				// getItems("http://localhost:8000/items/mindex");
+				pageSalesorders.getSalesorders("http://localhost:8000/sales/salesorders/mindex");
+			})
+			
+			
+			function nextPageSalesorder() {
+				pageSalesorders.getSalesorders(nextUrlSalesorder);
+			}
+			
+			function prevPageSalesorder() {
+				pageSalesorders.getSalesorders(prevUrlSalesorder);
 			}
         </script>
     </body>
