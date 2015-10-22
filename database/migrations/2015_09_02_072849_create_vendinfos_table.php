@@ -15,13 +15,13 @@ class CreateVendinfosTable extends Migration
         Schema::create('vendinfos', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('name')->nullable();
+            $table->string('name')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('po')->default(false);
-            $table->text('comments')->nullable();
-            $table->text('number');
+            $table->string('comments')->nullable();
+            $table->string('number');
             $table->integer('term_id')->nullable();
-            $table->text('shipvia')->nullable();
+            $table->string('shipvia')->nullable();
             $table->integer('vendtype_id')->nullable();
             $table->integer('contact1_id')->nullable();
             $table->integer('contact2_id')->nullable();

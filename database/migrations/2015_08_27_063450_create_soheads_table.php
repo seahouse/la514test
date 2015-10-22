@@ -15,14 +15,14 @@ class CreateSoheadsTable extends Migration
         Schema::create('soheads', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('number')->unique();
+            $table->string('number')->unique();
             $table->integer('custinfo_id')->nullable();
             $table->date('orderdate')->nullable();
             $table->integer('warehouse_id')->nullable();
-            $table->text('shipto')->nullable();
+            $table->string('shipto')->nullable();
             $table->integer('salesrep_id')->nullable();
             $table->integer('term_id')->nullable();
-            $table->text('comments')->nullable();
+            $table->string('comments')->nullable();
             
             $table->timestamps();
 

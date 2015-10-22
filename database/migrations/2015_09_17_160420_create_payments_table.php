@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('pohead_id');
             $table->decimal('amount', 20, 2)->default(0.0);
             $table->date('paydate')->default(Carbon::now());
-            $table->text('notes')->nullable();
+            $table->string('notes')->nullable();
             
             $table->timestamps();
             

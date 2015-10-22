@@ -15,7 +15,7 @@ class CreateCountysTable extends Migration
         Schema::create('countys', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('name');
+            $table->string('name');
             $table->integer('city_id')->nullable();
             
             $table->timestamps();

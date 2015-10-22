@@ -15,9 +15,9 @@ class CreateAccountingorder1sTable extends Migration
         Schema::create('accountingorder1s', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('title');
-            $table->text('status');
-            $table->text('descrip');
+            $table->string('title');
+            $table->string('status');
+            $table->string('descrip');
             
             $table->timestamps();
         });

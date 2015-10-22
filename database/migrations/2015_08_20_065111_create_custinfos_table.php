@@ -16,10 +16,10 @@ class CreateCustinfosTable extends Migration
             $table->increments('id');            
 
             $table->boolean('active')->nullable()->default(true);
-            $table->text('number')->unique();
-            $table->text('name')->nullable()->default('');
+            $table->string('number')->unique();
+            $table->string('name')->nullable()->default('');
             $table->integer('contact_id')->nullable();
-            $table->text('comments')->nullable()->default('');
+            $table->string('comments')->nullable()->default('');
             
             $table->timestamps();
 

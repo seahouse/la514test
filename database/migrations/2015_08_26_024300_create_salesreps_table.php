@@ -16,8 +16,8 @@ class CreateSalesrepsTable extends Migration
             $table->increments('id');
             
             $table->boolean('active')->default(true);
-            $table->text('number')->unique();
-            $table->text('name');
+            $table->string('number')->unique();
+            $table->string('name');
             $table->decimal('commission', 8, 4)->nullable();
             $table->integer('employee_id')->nullable();
             

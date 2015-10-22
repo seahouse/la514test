@@ -15,8 +15,8 @@ class CreateTermsTable extends Migration
         Schema::create('terms', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('code')->unique();
-            $table->text('descrip')->nullable();
+            $table->string('code')->unique();
+            $table->string('descrip')->nullable();
             $table->integer('duedays')->nullable();
             $table->integer('discdays')->nullable();
             $table->decimal('discprcnt', 10, 6)->nullable();

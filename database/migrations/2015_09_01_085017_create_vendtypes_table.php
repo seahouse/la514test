@@ -15,8 +15,8 @@ class CreateVendtypesTable extends Migration
         Schema::create('vendtypes', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('code');
-            $table->text('descrip')->nullable();
+            $table->string('code');
+            $table->string('descrip')->nullable();
             
             $table->timestamps();
             

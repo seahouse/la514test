@@ -25,7 +25,7 @@ class ItemRequest extends Request
     {
         return [
             //
-            'item_number' => 'required',
+            'item_number' => 'required | unique',
             'itemclass_id' => 'required',
             'itemtype_id' => 'required'
         ];

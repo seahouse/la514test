@@ -15,8 +15,8 @@ class CreateWarehousesTable extends Migration
         Schema::create('warehouses', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('code')->unique();
-            $table->text('descrip');
+            $table->string('code')->unique();
+            $table->string('descrip');
             $table->boolean('active')->default(true);
             $table->decimal('shipping_commission', 8, 4)->nullable();
             $table->integer('contact_id')->nullable();

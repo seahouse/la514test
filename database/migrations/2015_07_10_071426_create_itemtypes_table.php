@@ -15,8 +15,8 @@ class CreateItemtypesTable extends Migration
         Schema::create('itemtypes', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('name')->unique();
-            $table->text('descrip');
+            $table->string('name')->unique();
+            $table->string('descrip');
             
             $table->timestamps();
         });

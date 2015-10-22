@@ -16,18 +16,18 @@ class CreatePoheadsTable extends Migration
             $table->increments('id');
             
             $table->integer('status')->default(0);
-            $table->text('number');
+            $table->string('number');
             $table->date('orderdate');
             $table->integer('vendinfo_id');            
-            $table->text('fob')->nullable();      
-            $table->text('shipvia')->nullable();     
-            $table->text('comments')->nullable();
+            $table->string('fob')->nullable();      
+            $table->string('shipvia')->nullable();     
+            $table->string('comments')->nullable();
             $table->decimal('freight', 16, 2)->default(0.0);
             $table->integer('term_id')->nullable();
             $table->integer('vend_contact_id')->nullable();
-            $table->text('vendaddress')->nullable();
+            $table->string('vendaddress')->nullable();
             $table->integer('shipto_account_id')->nullable();
-            $table->text('shiptoaddress')->nullable();
+            $table->string('shiptoaddress')->nullable();
             $table->integer('sohead_id')->nullable();
             $table->date('releasedate')->nullable();
             

@@ -16,13 +16,13 @@ class CreateContactsTable extends Migration
             $table->increments('id');
             
             $table->boolean('active')->nullable()->default(true);
-            $table->text('name')->nullable()->default('');
+            $table->string('name')->nullable()->default('');
             $table->integer('addr_id')->nullable();
-            $table->text('phone')->nullable()->default('');
-            $table->text('phone2')->nullable()->default('');
-            $table->text('fax')->nullable()->default('');
-            $table->text('email')->nullable()->default('');
-            $table->text('remark')->nullable()->default('');
+            $table->string('phone')->nullable()->default('');
+            $table->string('phone2')->nullable()->default('');
+            $table->string('fax')->nullable()->default('');
+            $table->string('email')->nullable()->default('');
+            $table->string('remark')->nullable()->default('');
             
             $table->timestamps();
 

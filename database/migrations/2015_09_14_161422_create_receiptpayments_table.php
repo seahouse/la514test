@@ -19,7 +19,7 @@ class CreateReceiptpaymentsTable extends Migration
             $table->integer('sohead_id');
             $table->decimal('amount', 20, 2)->default(0.0);
             $table->date('recvdate')->default(Carbon::now());
-            $table->text('notes')->nullable();
+            $table->string('notes')->nullable();
             
             $table->timestamps();
             

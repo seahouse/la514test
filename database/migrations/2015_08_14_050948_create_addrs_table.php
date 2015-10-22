@@ -21,10 +21,10 @@ class CreateAddrsTable extends Migration
             $table->integer('city_id')->nullable();
             $table->integer('county_id')->nullable();
             $table->integer('region_id')->nullable();
-            $table->text('line1')->nullable()->default('');
-            $table->text('line2')->nullable()->default('');
-            $table->text('postalcode')->nullable()->default('');
-            $table->text('remark')->nullable()->default('');
+            $table->string('line1')->nullable()->default('');
+            $table->string('line2')->nullable()->default('');
+            $table->string('postalcode')->nullable()->default('');
+            $table->string('remark')->nullable()->default('');
             
             $table->timestamps();
 

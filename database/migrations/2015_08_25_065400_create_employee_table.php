@@ -15,12 +15,12 @@ class CreateEmployeeTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->text('number')->unique();
-            $table->text('name');
+            $table->string('number')->unique();
+            $table->string('name');
             $table->boolean('active')->default(true);
             $table->integer('contact_id')->nullable();
             $table->integer('dept_id')->nullable();
-            $table->text('notes')->nullable();
+            $table->string('notes')->nullable();
             $table->integer('image_id')->nullable();
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
