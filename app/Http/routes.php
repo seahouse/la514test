@@ -64,6 +64,10 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
     Route::get('inventoryAvailabilityBySalesorder', 'InventoryAvailabilityController@listBySalesorder');
 });
 
+Route::group(['prefix' => 'product', 'namespace' => 'Product', 'middleware' => 'auth'], function() {
+    Route::resource('characteristics', 'CharacteristicsController');
+});
+
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {
     Route::get('salesorders/{id}/ship', 'SalesordersController@ship');
     Route::post('salesorders/search', 'SalesordersController@search');

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
 use App\Http\Requests\Request;
 
-class ItemRequest extends Request
+class CharacteristicRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,8 @@ class ItemRequest extends Request
     {
         return [
             //
-            'item_number' => 'required | unique:items',
-            'itemclass_id' => 'required',
-            'itemtype_id' => 'required'
+            'name' => 'required',
+            'bitems' => 'required',
         ];
     }
 }

@@ -4,10 +4,11 @@
 
 @section('main')
     <div class="panel-heading">
-<!--        <div class="pull-right" style="padding-top: 4px;"> -->
-<!--             <a href="{{ URL::to('items/create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> {{'新建', [], 'layouts'}}</a> -->
-<!--         </div> -->
-        <h3 class="panel-title"> {{ ('产品 -- 物料') }} </h3>
+        <div class="panel-title">产品 -- 物料
+            <div class="pull-right">
+                <a href="{{ URL::to('product/characteristics') }}" class="btn btn-sm btn-success">{{'物料属性管理'}}</a>
+            </div>
+        </div>
     </div>
     
     <div class="panel-body">
