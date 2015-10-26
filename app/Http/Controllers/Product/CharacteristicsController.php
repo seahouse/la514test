@@ -20,7 +20,7 @@ class CharacteristicsController extends Controller
     public function index()
     {
         //
-        $characteristics = Characteristic::latest('created_at')->paginate(10);
+        $characteristics = Characteristic::latest('created_at')->paginate(10);        
         return view('product.characteristics.index', compact('characteristics'));
     }
 
@@ -58,6 +58,7 @@ class CharacteristicsController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -69,6 +70,9 @@ class CharacteristicsController extends Controller
     public function edit($id)
     {
         //
+        $characteristic = Characteristic::findOrFail($id);
+//         return $characteristic;
+        return view('product.characteristics.edit', compact('characteristic'));
     }
 
     /**
@@ -78,9 +82,12 @@ class CharacteristicsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CharacteristicRequest $request, $id)
     {
         //
+        $characteristic = Characteristic::findOrFail($id);
+        $characteristic->update($request->all());
+        return redirect('product/characteristics');
     }
 
     /**
@@ -92,5 +99,7 @@ class CharacteristicsController extends Controller
     public function destroy($id)
     {
         //
+        Characteristic::destroy($id);
+        return redirect('product/characteristics');
     }
 }

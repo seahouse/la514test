@@ -4,8 +4,8 @@
     <h1>编辑</h1>
     <hr/>
     
-    {!! Form::model($salesrep, ['method' => 'PATCH', 'action' => ['Sales\SalesrepsController@update', $salesrep->id]]) !!}
-        @include('sales.salesreps._form', ['submitButtonText' => '保存'])
+    {!! Form::model($characteristic, ['method' => 'PATCH', 'action' => ['Product\CharacteristicsController@update', $characteristic->id]]) !!}
+        @include('product.characteristics._form', ['submitButtonText' => '保存', 'bitems' => true])
     {!! Form::close() !!}
     
     @include('errors.list')
