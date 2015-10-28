@@ -99,10 +99,15 @@ class ViewComposerServiceProvider extends ServiceProvider
 //             $view->with('itemsiteList', \App\Inventory\Itemsite::orderby('itemsites.id', 'asc')->lists('item_id', 'id'));
         });
         
-            // roleList
-            view()->composer(array('system.users.editrole'), function($view) {
-                $view->with('roleList', \App\Role::orderby('id', 'asc')->lists('name', 'id'));
-            });
+        // roleList
+        view()->composer(array('system.users.editrole'), function($view) {
+            $view->with('roleList', \App\Role::orderby('id', 'asc')->lists('name', 'id'));
+        });
+        
+        // charIList: item char list
+        view()->composer(array('items.create', 'items.edit'), function($view) {
+            $view->with('charIList', \App\Product\Characteristic::orderby('id', 'asc')->where('bitems', true)->lists('name', 'id'));
+        });
     }
 
     /**
