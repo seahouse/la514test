@@ -66,6 +66,11 @@ Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory', 'middleware' 
 
 Route::group(['prefix' => 'product', 'namespace' => 'Product', 'middleware' => 'auth'], function() {
     Route::resource('characteristics', 'CharacteristicsController');
+    Route::group(['prefix' => 'charasses'], function() {
+        Route::post('addrecord', 'CharassesController@addrecord');
+        Route::get('getCharassesByTargetId/{targetType}/{targetId}', 'CharassesController@getCharassesByTargetId');
+        Route::resource('/', 'CharassesController');
+    });
 });
 
 Route::group(['prefix' => 'sales', 'namespace' => 'Sales', 'middleware' => 'auth'], function() {

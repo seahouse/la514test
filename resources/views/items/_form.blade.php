@@ -41,9 +41,9 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('charass', '属性:', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('lblcharass', '属性:', ['class' => 'col-sm-2 control-label']) !!}
     <div class='col-sm-10'>
-        <table class="table">
+        <table class="table" id="charassTable">
             <thead>
                 <tr>
                     <th>属性</th>
@@ -54,17 +54,19 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($item->charasses as $charass)
                     <tr>
-                        <td>{!! $item->charasses !!}</td>
+                        <td>{!! $charass->char->name !!}</td>
+                        <td>{!! $charass->value !!}</td>
+                        <td>@if($charass->default) {{ '是' }}  @else {{ '否' }} @endif</td>
+                        <td>{!! $charass->price !!}</td>
                     </tr>
-                    
-                    <tr>
-{{--                        <td><input class="btn btn-sm" type="button" value="+" onclick="addCharass()"></td> 
-                        <td><button type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="{!! $item->id !!}">+</button></td>--}}
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button></td>
-                    </tr>
+                @endforeach
             </tbody>
         </table>
+        <td><button type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="{!! $item->id !!}">+</button></td>
+ {{--                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button></td>--}}
+
     </div>
 </div>
 
@@ -103,33 +105,7 @@
 </div>
 --}}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">添加属性</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">属性:</label>
-            {!! Form::select('char_id', $charIList, null, ['class' => 'form-control']) !!}
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">值:</label>
-            {!! Form::text('value', null, ['class' => 'form-control']) !!}
-          </div>
-          {!! Form::hidden('item_id', $itemId, ['class' => 'form-control']) !!}
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 

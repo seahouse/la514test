@@ -38,4 +38,8 @@ class Item extends Model
     public function soitems() {
         return $this->hasMany('App\Sales\Soitem', 'item_id', 'id');
     }
+    
+    public function charasses() {
+        return $this->hasMany('App\Product\Charass', 'target_id', 'id');
+    }
 }

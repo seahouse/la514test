@@ -14,5 +14,6 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
         'auth/mlogin',
+        'product/charasses/addrecord'
     ];
 }
