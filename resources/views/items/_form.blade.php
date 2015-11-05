@@ -40,35 +40,7 @@
     </div>
 </div>
 
-<div class="form-group">
-    {!! Form::label('lblcharass', '属性:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class='col-sm-10'>
-        <table class="table" id="charassTable">
-            <thead>
-                <tr>
-                    <th>属性</th>
-                    <th>值</th>
-                    <th>默认</th>
-                    <th>价格</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($item->charasses as $charass)
-                    <tr>
-                        <td>{!! $charass->char->name !!}</td>
-                        <td>{!! $charass->value !!}</td>
-                        <td>@if($charass->default) {{ '是' }}  @else {{ '否' }} @endif</td>
-                        <td>{!! $charass->price !!}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <td><button type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="{!! $item->id !!}">+</button></td>
- {{--                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button></td>--}}
 
-    </div>
-</div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -76,34 +48,6 @@
     </div>
 </div>
 
-{{--
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
---}}
 
 
 

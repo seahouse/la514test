@@ -68,6 +68,7 @@ Route::group(['prefix' => 'product', 'namespace' => 'Product', 'middleware' => '
     Route::resource('characteristics', 'CharacteristicsController');
     Route::group(['prefix' => 'charasses'], function() {
         Route::post('addrecord', 'CharassesController@addrecord');
+        Route::get('removerecord/{id}', 'CharassesController@removerecord');
         Route::get('getCharassesByTargetId/{targetType}/{targetId}', 'CharassesController@getCharassesByTargetId');
         Route::resource('/', 'CharassesController');
     });

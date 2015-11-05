@@ -8,34 +8,9 @@
         @include('items._form', ['submitButtonText' => '保存', 'marketprice' => $item->marketprice, 'itemId' => $item->id])
     {!! Form::close() !!}
     
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">添加属性</h4>
-      </div>
-      <div class="modal-body">
-        <form method="post" id="formCharass">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">属性:</label>
-            {!! Form::select('char_id', $charIList, null, ['class' => 'form-control']) !!}
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">值:</label>
-            {!! Form::text('value', null, ['class' => 'form-control']) !!}
-          </div>
-          {!! Form::hidden('target_type', 'I', ['class' => 'form-control']) !!}
-          {!! Form::hidden('target_id', $item->id, ['class' => 'form-control']) !!}
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnAddCharass">确定</button>
-      </div>
-    </div>
-  </div>
-</div>
+    @include('items.edit_charass')
+    
+
 
     @include('errors.list')
 @endsection
@@ -68,6 +43,7 @@
 										+ '<td>' + field.value + '</td>'
 										+ '<td>' + field.default_str + '</td>'
 										+ '<td>' + field.price + '</td>'
+										+ '<td><button type="button" id="btnRemoveCharass" class="glyphicon glyphicon-remove" onclick="removecharass(' + field.id + ')"></button></td>'
 										+ '</tr>';
 								});		
 						        
@@ -76,7 +52,43 @@
                 },
          	});
   	  });
+
+
+        
     });
+
+    function removecharass(id) {
+	    $.ajax({
+	    type:"GET",
+	    url:"{{ url('product/charasses/removerecord/') }}" + "/" + id,
+// 	    data:"id=" . id,
+	    error:function(xhr, ajaxOptions, thrownError){
+ 	    alert('error');
+			alert(xhr.status);
+			alert(xhr.responseText);
+			alert(ajaxOptions);
+			alert(thrownError);
+		},
+     	success:function(msg){
+     	    alert('删除成功.');
+    		$.getJSON("{{ url('product/charasses/getCharassesByTargetId/I/' . $item->id) }}", 
+    				function(data) {
+    					var listItem = '';
+    					$.each(data, function(i, field){
+    						listItem += '<tr>'
+    							+ '<td>' + field.char_name + '</td>'
+    							+ '<td>' + field.value + '</td>'
+    							+ '<td>' + field.default_str + '</td>'
+    							+ '<td>' + field.price + '</td>'
+    							+ '<td><button type="button" id="btnRemoveCharass" class="glyphicon glyphicon-remove" onclick="removecharass(' + field.id + ')"></button></td>'
+    							+ '</tr>';
+    					});		
+    			        
+    			        $("#charassTable tbody").empty().append(listItem);
+    				});
+        },
+	});
+    };
     
     $('#exampleModal').on('shown.bs.modal', function (event) {
     	  var button = $(event.relatedTarget) // Button that triggered the modal

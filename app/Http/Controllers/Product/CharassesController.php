@@ -77,12 +77,13 @@ class CharassesController extends Controller
     
     public function addrecord(CharassRequest $request)
     {
-        return 'success';
+//         return 'success';
         $charass = new Charass;
         $charass->target_type = $request->input('target_type');
         $charass->target_id = $request->input('target_id');
         $charass->char_id = $request->input('char_id');
         $charass->value = $request->input('value');
+        $charass->price = $request->input('price');
 
         if ($charass->save())
             return 'success';
@@ -133,5 +134,11 @@ class CharassesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function removerecord($id)
+    {
+        Charass::destroy($id);
+        return 'success';
     }
 }

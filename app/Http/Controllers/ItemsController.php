@@ -133,9 +133,14 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, ItemRequest $request)
+    public function update($id, Request $request)
     {
-        //
+        $this->validate($request, [
+            'item_number' => 'required',
+            'itemclass_id' => 'required',
+            'itemtype_id' => 'required'
+        ]);
+        
         $item = Item::findOrFail($id);
         $item->update($request->all());
         
