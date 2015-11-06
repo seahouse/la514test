@@ -8,7 +8,13 @@
         @include('items._form', ['submitButtonText' => '保存', 'marketprice' => $item->marketprice, 'itemId' => $item->id])
     {!! Form::close() !!}
     
-    @include('items.edit_charass')
+ {{--     <ul class="nav nav-tabs">
+        {{ URL('items/edit_charass') }}
+        <li role="presentation" class="active"><a href="/items/edit_charass">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul> --}}
+  @include('items.edit_charass')  
     
 
 
